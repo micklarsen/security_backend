@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="CA3_Boilerplate_Backend:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>CA3_Boilerplate_Backend</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Eksamen_Boilerplate_Backend-1.war">
+      <element id="artifact" artifact-name="CA3_Boilerplate_Backend:war exploded" />
+    </root>
+  </artifact>
+</component>
