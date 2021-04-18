@@ -21,7 +21,7 @@ import org.mindrot.jbcrypt.BCrypt;
 @Entity
 @Table(name = "persons")
 @NamedQuery(name = "Person.deleteAllRows", query = "DELETE from Person")
-public class Person implements Serializable {
+public class    Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
