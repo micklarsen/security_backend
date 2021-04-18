@@ -1,6 +1,6 @@
 # Dat4Sem Security Backend
 
-(Insert travis URL)
+[![Build Status](https://travis-ci.com/micklarsen/security_backend.svg?branch=main)](https://travis-ci.com/micklarsen/security_backend)
 
 ## Group
 
