@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>mla</groupId>
-    <artifactId>3SEM_Security</artifactId>
+    <artifactId>4SEM_Security</artifactId>
     <version>1</version>
     <packaging>war</packaging>
 
-    <name>3SEM_Security</name>
+    <name>4SEM_Security</name>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
