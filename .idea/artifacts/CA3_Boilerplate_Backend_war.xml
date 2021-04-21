@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="3SEM_Security-1.war">
+    <root id="archive" name="4SEM_Security-1.war">
       <element id="artifact" artifact-name="CA3_Boilerplate_Backend:war exploded" />
     </root>
   </artifact>
