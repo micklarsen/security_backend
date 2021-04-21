@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="war" name="3SEM_Security:war">
+  <artifact type="war" name="4SEM_Security:war">
     <output-path>$PROJECT_DIR$/target</output-path>
     <properties id="maven-jee-properties">
       <options>
@@ -8,7 +8,7 @@
       </options>
     </properties>
     <root id="archive" name="Eksamen_Boilerplate_Backend-1.war">
-      <element id="artifact" artifact-name="3SEM_Security:war exploded" />
+      <element id="artifact" artifact-name="4SEM_Security:war exploded" />
     </root>
   </artifact>
 </component>
