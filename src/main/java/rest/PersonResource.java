@@ -2,7 +2,6 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dto.HobbyDTO;
 import dto.PersonDTO;
 import dto.PersonsDTO;
 import entities.Person;
@@ -85,9 +84,7 @@ public class PersonResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("person/{email}")
     public String getPersonByEmail(@PathParam("email") String email) throws NotFoundException {
-
         return GSON.toJson(FACADE.getPersonByEmail(email));
-
     }
     
     @GET
@@ -125,26 +122,4 @@ public class PersonResource {
         PersonDTO personDelete = FACADE.deletePerson(email);
         return GSON.toJson(personDelete);
     }
-    
-    @PUT
-    @Path("addHobby/{email}/{id}")
-    @Produces({MediaType.APPLICATION_JSON})
-    @Consumes({MediaType.APPLICATION_JSON})
-    public Response addHobbyToPerson(@PathParam("email")String email, @PathParam("id")long id) throws NotFoundException{
-        
-        FACADE.addHobbyToPerson(email, id);
-        
-        return Response.status(Response.Status.OK).entity("Person updated OK").build();
-    }  
-    
-    @PUT
-    @Path("removeHobby/{email}/{id}")
-    @Produces({MediaType.APPLICATION_JSON})
-    @Consumes({MediaType.APPLICATION_JSON})
-    public Response removeHobbyFromPerson(@PathParam("email")String email, @PathParam("id")long id) throws NotFoundException{
-        
-        FACADE.removeHobbyFromPerson(email, id);
-        
-        return Response.status(Response.Status.OK).entity("Person updated OK").build();
-    }  
 }
