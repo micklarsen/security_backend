@@ -1,18 +1,16 @@
 package facades;
 
-import dto.HobbyDTO;
 import dto.PersonDTO;
 import dto.PersonsDTO;
-import entities.Address;
-import entities.Hobby;
 import entities.Person;
 import entities.Role;
 import errorhandling.NotFoundException;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+
 import security.errorhandling.AuthenticationException;
 
 public class PersonFacade {
@@ -24,7 +22,6 @@ public class PersonFacade {
     }
 
     /**
-     *
      * @param _emf
      * @return the instance of this facade.
      */
@@ -75,7 +72,6 @@ public class PersonFacade {
             em.close();
         }
         return new PersonDTO(user);
-
     }
 
     public PersonsDTO getAllPersons() throws NotFoundException {
@@ -112,28 +108,6 @@ public class PersonFacade {
                 Role userRole = em.find(Role.class, "user");
                 newPerson.addRole(userRole);
 
-                TypedQuery<Address> addressList = em.createQuery("SELECT a FROM Address a", Address.class);
-                List<Address> resultList = addressList.getResultList();
-
-                boolean flag = true;
-
-                for (int i = 0; i < resultList.size(); i++) {
-                    if (person.getStreet().equalsIgnoreCase(resultList.get(i).getStreet())
-                            && person.getCity().equalsIgnoreCase(resultList.get(i).getCity())
-                            && person.getZipcode() == resultList.get(i).getZipCode()) {
-                        newPerson.setAddress(resultList.get(i));
-                        flag = false;
-                    }
-                }
-                if (flag) {
-                    Address newAddress = new Address(person.getStreet(), person.getCity(), person.getZipcode());
-                    newPerson.setAddress(newAddress);
-                }
-
-                Hobby hobby = new Hobby("None", "none");
-
-                newPerson.addHobby(hobby);
-
                 em.getTransaction().begin();
                 em.persist(newPerson);
                 em.getTransaction().commit();
@@ -161,25 +135,6 @@ public class PersonFacade {
         person.setLastName(p.getLastName());
         person.setPhone(p.getPhone());
 
-//        Address a1 = em.find(Address.class, person.getAddress().getId());
-        TypedQuery<Address> addressList = em.createQuery("SELECT a FROM Address a", Address.class);
-        List<Address> resultList = addressList.getResultList();
-
-        boolean flag = true;
-
-        for (int i = 0; i < resultList.size(); i++) {
-            if (p.getStreet().equalsIgnoreCase(resultList.get(i).getStreet())
-                    && p.getCity().equalsIgnoreCase(resultList.get(i).getCity())
-                    && p.getZipcode() == resultList.get(i).getZipCode()) {
-                person.setAddress(resultList.get(i));
-                flag = false;
-            }
-        }
-        if (flag) {
-            Address newAddress = new Address(p.getStreet(), p.getCity(), p.getZipcode());
-            person.setAddress(newAddress);
-        }
-
         try {
             em.getTransaction().begin();
             em.merge(person);
@@ -187,41 +142,8 @@ public class PersonFacade {
         } finally {
             em.close();
         }
-
-//        //DELETE 
-//        for (int i = 0; i < resultList.size(); i++) {
-//            System.out.println();
-//            System.out.println("RESULT LIST ID: " + resultList.get(i).getId() + " PERSON LIST SIZE IS: " + resultList.get(i).getPersonList().size());
-//        }
-//
-//        //Update list of addresses
-//        resultList = em.createQuery("SELECT a FROM Address a", Address.class).getResultList();
-//        
-//        //Clean up addresses in DB
-//        for (int i = 0; i < resultList.size(); i++) {
-//            if (resultList.get(i).getPersonList().isEmpty()) {
-//
-//                Long id = resultList.get(i).getId();
-//                System.out.println(id);
-//
-//                em.getTransaction().begin();
-//
-//                em.remove(em.find(Address.class, id));
-////                TypedQuery<Address> delAddress;
-////                delAddress = em.createQuery("DELETE FROM Address WHERE id LIKE :id", Address.class);
-////                delAddress.setParameter("id", id);
-//                em.getTransaction().commit();
-//                resultList.remove(i);
-//            }
-//        }
     }
 
-//    private List<Address> addressList() {
-//        EntityManager em = emf.createEntityManager();
-//        TypedQuery<Address> addressList = (TypedQuery<Address>) em.createQuery("SELECT a FROM Address a", Address.class);
-//        List<Address> resultList = addressList.getResultList();
-//        return resultList;
-//    }
     public PersonDTO deletePerson(String email) throws NotFoundException {
         EntityManager em = emf.createEntityManager();
         Person person = em.find(Person.class, email);
@@ -239,43 +161,4 @@ public class PersonFacade {
         }
     }
 
-    public void addHobbyToPerson(String email, long id) throws NotFoundException {
-        EntityManager em = emf.createEntityManager();
-
-        Person person = em.find(Person.class, email);
-        Hobby hobby = em.find(Hobby.class, id);
-
-        person.addHobby(hobby);
-
-        if (person == null) {
-            throw new NotFoundException("No person found");
-        }
-        try {
-            em.getTransaction().begin();
-            em.merge(person);
-            em.getTransaction().commit();
-        } finally {
-            em.close();
-        }
-    }
-
-    public void removeHobbyFromPerson(String email, long id) throws NotFoundException {
-        EntityManager em = emf.createEntityManager();
-
-        Person person = em.find(Person.class, email);
-        Hobby hobby = em.find(Hobby.class, id);
-
-        person.removeHobby(hobby);
-
-        if (person == null) {
-            throw new NotFoundException("No person found");
-        }
-        try {
-            em.getTransaction().begin();
-            em.merge(person);
-            em.getTransaction().commit();
-        } finally {
-            em.close();
-        }
-    }
 }

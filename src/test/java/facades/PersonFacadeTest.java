@@ -2,8 +2,6 @@ package facades;
 
 import dto.PersonDTO;
 import dto.PersonsDTO;
-import entities.Address;
-import entities.Hobby;
 import entities.Role;
 import utils.EMF_Creator;
 import entities.Person;
@@ -18,11 +16,10 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import security.errorhandling.AuthenticationException;
 
@@ -35,8 +32,6 @@ public class PersonFacadeTest {
     private static PersonFacade facade;
     private Person p1, p2, p3;
     private Role r1, r2;
-    private Address a1, a2;
-    private Hobby h1, h2;
 
     public PersonFacadeTest() {
     }
@@ -62,26 +57,10 @@ public class PersonFacadeTest {
             em.getTransaction().begin();
             em.createQuery("delete from Person").executeUpdate();
             em.createQuery("delete from Role").executeUpdate();
-            em.createQuery("delete from Address").executeUpdate();
 
-            p1 = new Person("kinkymarkmus@hotmail.com", "secretpassword", "13467964", "John", "Illermand");
+            p1 = new Person("someone@hotmail.com", "secretpassword", "13467964", "John", "Williams");
             p2 = new Person("villads@gmail.com", "secretpassword", "65478931", "Villads", "Markmus");
-            p3 = new Person("Mike@litoris.com", "secretpassword", "32132112", "Willy", "Stroker");
-
-            a1 = new Address("Gøgeholmvej 2", "Helsingør", 3000);
-            a2 = new Address("Slingrevænget 55", "Birkerød", 3460);
-
-            h1 = new Hobby("Vandpolo", "Husk at holde vejret");
-            h2 = new Hobby("Full Contact Petanque", "Bring your own equipment (And bandages!)");
-
-            p1.setAddress(a1);
-            p2.setAddress(a2);
-            p3.setAddress(a1);
-
-            p1.addHobby(h1);
-            p2.addHobby(h2);
-            p3.addHobby(h2);
-            p3.addHobby(h1);
+            p3 = new Person("someoneelse@hotmail.com", "secretpassword", "32132112", "Willy", "Keeper");
 
             r1 = new Role("user");
             r2 = new Role("admin");
@@ -114,7 +93,7 @@ public class PersonFacadeTest {
     public void testGetVeryfiedUser() throws AuthenticationException {
         String pass = p1.getUserPass();
 
-        assertEquals(p1.getEmail(), "kinkymarkmus@hotmail.com");
+        assertEquals(p1.getEmail(), "someone@hotmail.com");
         assertEquals(p1.getUserPass(), pass);
         assertThat(p1.getEmail(), is(not("pollemand")));
         assertThat(p1.getUserPass(), is(not("lilleGrimTomat")));
@@ -133,19 +112,10 @@ public class PersonFacadeTest {
         String phone = "123456";
         String firstName = "Ulla";
         String lastName = "Allu";
-        String street = "street";
-        String city = "city";
-        int zipcode = 1234;
         String password = "muffe";
-        String hobby1 = "bold";
-        String hobby2 = "flyvning";
 
         Person p = new Person(email, password, phone, firstName, lastName);
-        Address a = new Address(street, city, zipcode);
-        Hobby h = new Hobby(hobby1, hobby2);
 
-        p.addHobby(h);
-        p.setAddress(a);
 
         System.out.println("Person: " + p);
 
@@ -184,7 +154,7 @@ public class PersonFacadeTest {
 
         PersonDTO personDTO = facade.getPersonByEmail(p1.getEmail());
 
-        assertEquals("kinkymarkmus@hotmail.com", personDTO.getEmail());
+        assertEquals("someone@hotmail.com", personDTO.getEmail());
     }
 
     @Test

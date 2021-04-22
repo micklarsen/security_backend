@@ -171,38 +171,5 @@ public class PersonResourceTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of addHobbyToPerson method, of class PersonResource.
-     */
-    @Disabled
-    @Test
-    public void testAddHobbyToPerson() throws Exception {
-        System.out.println("addHobbyToPerson");
-        String email = "";
-        long id = 0L;
-        PersonResource instance = new PersonResource();
-        Response expResult = null;
-        Response result = instance.addHobbyToPerson(email, id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of removeHobbyFromPerson method, of class PersonResource.
-     */
-    @Disabled
-    @Test
-    public void testRemoveHobbyFromPerson() throws Exception {
-        System.out.println("removeHobbyFromPerson");
-        String email = "";
-        long id = 0L;
-        PersonResource instance = new PersonResource();
-        Response expResult = null;
-        Response result = instance.removeHobbyFromPerson(email, id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
 }

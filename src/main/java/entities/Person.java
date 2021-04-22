@@ -3,25 +3,16 @@ package entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 import org.mindrot.jbcrypt.BCrypt;
 
 @Entity
 @Table(name = "persons")
 @NamedQuery(name = "Person.deleteAllRows", query = "DELETE from Person")
-public class    Person implements Serializable {
+public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -38,19 +29,10 @@ public class    Person implements Serializable {
     private String userPass;
 
     @JoinTable(name = "user_roles", joinColumns = {
-        @JoinColumn(name = "email", referencedColumnName = "email")}, inverseJoinColumns = {
-        @JoinColumn(name = "role_name", referencedColumnName = "role_name")})
+            @JoinColumn(name = "email", referencedColumnName = "email")}, inverseJoinColumns = {
+            @JoinColumn(name = "role_name", referencedColumnName = "role_name")})
     @ManyToMany
     private List<Role> roleList = new ArrayList<>();
-
-
-    @JoinTable(name = "person_hobbies", joinColumns = {
-        @JoinColumn(name = "email", referencedColumnName = "email")}, inverseJoinColumns = {
-        @JoinColumn(name = "id", referencedColumnName = "id")})
-    @ManyToMany(cascade = CascadeType.PERSIST)
-
-    
-    private List<Hobby> hobbyList;
 
     @Column(name = "phone", length = 11)
     private String phone;
@@ -61,9 +43,8 @@ public class    Person implements Serializable {
     @Column(name = "lastname", length = 30)
     private String lastName;
 
-    @JoinColumn(name = "address_id")
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    private Address address;
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "person")
+    private List<Comment> commentList = new ArrayList<>();
 
     public Person() {
     }
@@ -74,7 +55,6 @@ public class    Person implements Serializable {
         this.lastName = lastName;
         this.email = email;
         this.userPass = BCrypt.hashpw(userPass, BCrypt.gensalt(12));
-        this.hobbyList = new ArrayList<>();
     }
 
     //TODO Change when password is hashed
@@ -86,7 +66,7 @@ public class    Person implements Serializable {
         this.email = userName;
         this.userPass = BCrypt.hashpw(userPass, BCrypt.gensalt(12));
     }
-    
+
     public String getEmail() {
         return email;
     }
@@ -103,41 +83,6 @@ public class    Person implements Serializable {
         this.userPass = userPass;
     }
 
-    public List<String> getHobbiesAsStrings() {
-        if (hobbyList.isEmpty()) {
-            return null;
-        }
-        List<String> hobbiesAsStrings = new ArrayList<>();
-        hobbyList.forEach((hobby) -> {
-            hobbiesAsStrings.add(hobby.getName());
-        });
-        return hobbiesAsStrings;
-    }
-
-    public List<Hobby> getHobbyList() {
-        return hobbyList;
-    }
-
-    public void addHobby(Hobby hobby) {
-        if(hobby != null){
-            this.hobbyList.add(hobby);
-            hobby.getPersonList().add(this);
-        }
-
-    }
-    
-    public void removeHobby(Hobby hobby) {
-        if(hobby != null){
-            hobbyList.remove(hobby);
-            hobby.getPersonList().remove(this);
-        }
-
-    }
-
-    public void setHobbyList(List<Hobby> hobbyList) {
-        this.hobbyList = hobbyList;
-    }
-
     public List<String> getRolesAsStrings() {
         if (roleList.isEmpty()) {
             return null;
@@ -147,6 +92,21 @@ public class    Person implements Serializable {
             rolesAsStrings.add(role.getRoleName());
         });
         return rolesAsStrings;
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
+    public void addComment(Comment userComment) {
+        if (userComment != null) {
+            commentList.add(userComment);
+            userComment.setPerson(this);
+        }
     }
 
     public List<Role> getRoleList() {
@@ -183,14 +143,6 @@ public class    Person implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
 }
