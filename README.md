@@ -9,3 +9,6 @@
 - Mick Larsen (Me)
 - [Morten Rasmussen]()
 - [Per Kringelbach](https://github.com/cph-pk)
+
+[Backend link](https://github.com/micklarsen/security_backend)  
+[Frontend link](https://github.com/micklarsen/security_frontend)
