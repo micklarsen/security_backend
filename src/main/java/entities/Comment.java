@@ -1,6 +1,9 @@
 package entities;
 
+import servlet.UploadServlet;
+
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -40,16 +43,45 @@ public class Comment implements Serializable {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Person person;
 
-    private String topicID;
+    @Column(name = "topic_ID", columnDefinition = "int")
+    private int topicID;
 
-    public Comment(String comment, String topicID) {
+    @Column(name = "image_file", columnDefinition = "VARCHAR(255)")
+    private String imageFile;
+
+    //UploadServlet uploadServlet = new UploadServlet();
+
+    public Comment(String comment, int topicID, String imageFile) {
         this.comment = comment;
         this.created = new Date();
         this.lastEdited = new Date();
         this.topicID = topicID;
+        this.imageFile = imageFile;
     }
 
+
+//    public String makeFileName(String filename) {
+//        try {
+//            return uploadServlet.makeMD5(imageFile) + uploadServlet.getFileExtension(imageFile);
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        }
+//        return "";
+//    }
+
     public Comment() {
+    }
+
+    public void setTopicID(int topicID) {
+        this.topicID = topicID;
+    }
+
+    public String getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(String imageID) {
+        this.imageFile = imageID;
     }
 
     public long getId() {
@@ -92,11 +124,11 @@ public class Comment implements Serializable {
         this.lastEdited = lastEdited;
     }
 
-    public String getTopicID() {
+    public int getTopicID() {
         return topicID;
     }
 
-    public void setRocketID(String topicID) {
+    public void setRocketID(int topicID) {
         this.topicID = topicID;
     }
 

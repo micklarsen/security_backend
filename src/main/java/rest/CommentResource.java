@@ -10,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
 
 import errorhandling.ExceptionDTO;
+import servlet.UploadServlet;
 import utils.EMF_Creator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -22,9 +23,12 @@ import facades.CommentFacade;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
+import java.security.NoSuchAlgorithmException;
 
 @Path("comments")
 public class CommentResource {
+
+    static UploadServlet uploadServlet = new UploadServlet();
 
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
     private static final CommentFacade FACADE = CommentFacade.getCommentFacade(EMF);
@@ -71,9 +75,21 @@ public class CommentResource {
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-    public String addComment(String comment) throws CommentException, NotFoundException {
+    public String addComment(String comment) throws CommentException, NotFoundException, NoSuchAlgorithmException {
         CommentDTO c = GSON.fromJson(comment, CommentDTO.class);
-        CommentDTO commentAdded = FACADE.addComment(c.getUserComment(), c.getTopicID(), c.getUserName());
+        CommentDTO commentAdded = FACADE.addComment(c.getUserComment(), c.getTopicID(), c.getUserName(), c.getImageID());
+        System.out.println(c.getImageID());
+        return GSON.toJson(commentAdded);
+    }
+
+    @POST
+    @Path("/withimage")
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public String addCommentWithImage(String comment) throws CommentException, NotFoundException, NoSuchAlgorithmException {
+        CommentDTO c = GSON.fromJson(comment, CommentDTO.class);
+        CommentDTO commentAdded = FACADE.addComment(c.getUserComment(), c.getTopicID(), c.getUserName(), c.getImageID());
+        uploadServlet.persistComment(commentAdded);
         return GSON.toJson(commentAdded);
     }
 
