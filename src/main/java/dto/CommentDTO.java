@@ -24,7 +24,7 @@ public class CommentDTO {
         this.created = comment.getCreated();
         this.topicID = comment.getTopicID();
         this.userName = comment.getPerson().getFirstName();
-        this.imageID = comment.getImageFile();
+        this.imageID = comment.getImageBase64();
     }
 
     public String getImageID() {
