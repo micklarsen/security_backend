@@ -2,17 +2,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
+import javax.persistence.*;
 
 
 @Entity
@@ -40,16 +30,46 @@ public class Comment implements Serializable {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Person person;
 
-    private String topicID;
+    @Column(name = "topic_ID", columnDefinition = "int")
+    private int topicID;
 
-    public Comment(String comment, String topicID) {
+    @Lob
+    @Column(name = "image_file")
+    private String imageBase64;
+
+    //UploadServlet uploadServlet = new UploadServlet();
+
+    public Comment(String comment, int topicID, String imageBase64) {
         this.comment = comment;
         this.created = new Date();
         this.lastEdited = new Date();
         this.topicID = topicID;
+        this.imageBase64 = imageBase64;
     }
 
+
+//    public String makeFileName(String filename) {
+//        try {
+//            return uploadServlet.makeMD5(imageFile) + uploadServlet.getFileExtension(imageFile);
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        }
+//        return "";
+//    }
+
     public Comment() {
+    }
+
+    public void setTopicID(int topicID) {
+        this.topicID = topicID;
+    }
+
+    public String getImageBase64() {
+        return imageBase64;
+    }
+
+    public void setImageBase64(String imageID) {
+        this.imageBase64 = imageID;
     }
 
     public long getId() {
@@ -92,11 +112,11 @@ public class Comment implements Serializable {
         this.lastEdited = lastEdited;
     }
 
-    public String getTopicID() {
+    public int getTopicID() {
         return topicID;
     }
 
-    public void setRocketID(String topicID) {
+    public void setRocketID(int topicID) {
         this.topicID = topicID;
     }
 

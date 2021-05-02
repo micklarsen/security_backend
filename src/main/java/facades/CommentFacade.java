@@ -14,6 +14,8 @@ import javax.persistence.EntityManagerFactory;
 
 import utils.EMF_Creator;
 
+import java.security.NoSuchAlgorithmException;
+
 public class CommentFacade {
 
     private static EntityManagerFactory emf;
@@ -98,10 +100,10 @@ public class CommentFacade {
         }
     }
 
-    public CommentDTO addComment(String addComment, String rocketID, String userName) throws CommentException, NotFoundException {
+    public CommentDTO addComment(String addComment, int topicID, String userName, String imageID) throws CommentException, NotFoundException, NoSuchAlgorithmException {
 
         EntityManager em = emf.createEntityManager();
-        Comment comment = new Comment(addComment, rocketID);
+        Comment comment = new Comment(addComment, topicID, imageID);
 
         Person u = em.find(Person.class, userName);
 
@@ -124,13 +126,6 @@ public class CommentFacade {
         }
 
         return new CommentDTO(comment);
-    }
-
-    public static void main(String[] args) throws Exception {
-        EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
-        CommentFacade cf = getCommentFacade(EMF);
-        cf.addComment("test fra facade", "123", "Per");
-
     }
 
 }

@@ -9,6 +9,7 @@
     </properties>
     <root id="archive" name="Eksamen_Boilerplate_Backend-1.war">
       <element id="artifact" artifact-name="4SEM_Security:war exploded" />
+      <element id="library" level="project" name="Maven: commons-io:commons-io:2.6" />
     </root>
   </artifact>
 </component>

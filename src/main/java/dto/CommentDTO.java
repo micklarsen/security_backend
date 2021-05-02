@@ -10,7 +10,8 @@ public class CommentDTO {
     private Comment comment;
     private Date created;
     private long id;
-    private String topicID;
+    private int topicID;
+    private String imageID;
 
     private String userName;
 
@@ -23,6 +24,15 @@ public class CommentDTO {
         this.created = comment.getCreated();
         this.topicID = comment.getTopicID();
         this.userName = comment.getPerson().getFirstName();
+        this.imageID = comment.getImageBase64();
+    }
+
+    public String getImageID() {
+        return imageID;
+    }
+
+    public void setImageID(String imageID) {
+        this.imageID = imageID;
     }
 
     public String getUserComment() {
@@ -57,11 +67,11 @@ public class CommentDTO {
         this.created = created;
     }
 
-    public String getTopicID() {
+    public int getTopicID() {
         return topicID;
     }
 
-    public void setTopicID(String topicID) {
+    public void setTopicID(int topicID) {
         this.topicID = topicID;
     }
 

@@ -55,6 +55,7 @@
           <element id="library" level="project" name="Maven: com.nimbusds:nimbus-jose-jwt:9.0.1" />
           <element id="library" level="project" name="Maven: com.github.stephenc.jcip:jcip-annotations:1.0-1" />
           <element id="library" level="project" name="Maven: org.mindrot:jbcrypt:0.4" />
+          <element id="library" level="project" name="Maven: commons-io:commons-io:2.6" />
         </element>
       </element>
       <element id="directory" name="META-INF">
