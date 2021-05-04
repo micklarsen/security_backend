@@ -15,7 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="CA3_Boilerplate_Backend" options="-endorseddirs &quot;C:\Users\Mick\Documents\Datamatiker\4. Semester\Security\eksamen\security_backend\target/endorsed&quot;" />
+      <module name="CA3_Boilerplate_Backend" options="-endorseddirs C:\Users\Per\Documents\sem4\Security\security_backend\target/endorsed" />
     </option>
   </component>
 </project>

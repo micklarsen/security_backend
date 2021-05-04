@@ -19,7 +19,7 @@ import java.util.Random;
 )
 public class UploadServlet extends HttpServlet {
 
-    private String path = "C:/Users/Mick/Documents/Datamatiker/4. Semester/Security/eksamen/";
+    private String path = "C:/Users/Per/Documents/sem4/Security/images/";
 
     protected String filename;
     private String extension;

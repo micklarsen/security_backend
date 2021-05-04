@@ -14,6 +14,7 @@ public class CommentDTO {
     private String imageID;
 
     private String userName;
+    private String userEmail;
 
     public CommentDTO() {
     }
@@ -24,7 +25,8 @@ public class CommentDTO {
         this.created = comment.getCreated();
         this.topicID = comment.getTopicID();
         this.userName = comment.getPerson().getFirstName();
-        this.imageID = comment.getImageBase64();
+        this.userEmail = comment.getPerson().getEmail();
+        this.imageID = comment.getImageFile();
     }
 
     public String getImageID() {
@@ -83,6 +85,10 @@ public class CommentDTO {
         this.userName = userName;
     }
 
+    public String getUserEmail() { return userEmail; }
+
+    public void setUserEmail(String userEmail) { this.userEmail = userEmail; }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -118,7 +124,7 @@ public class CommentDTO {
 
     @Override
     public String toString() {
-        return "CommentDTO{" + "userComment=" + userComment + ", comment=" + comment + ", created=" + created + ", id=" + id + ", topicID=" + topicID + ", userName=" + userName + '}';
+        return "CommentDTO{" + "userComment=" + userComment + ", comment=" + comment + ", created=" + created + ", id=" + id + ", topicID=" + topicID + ", userName=" + userName + ", userEmail=" + userEmail + '}';
     }
 
 
