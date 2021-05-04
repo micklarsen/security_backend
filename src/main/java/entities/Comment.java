@@ -1,21 +1,8 @@
 package entities;
 
-import servlet.UploadServlet;
-
 import java.io.Serializable;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
+import javax.persistence.*;
 
 
 @Entity
@@ -46,17 +33,18 @@ public class Comment implements Serializable {
     @Column(name = "topic_ID", columnDefinition = "int")
     private int topicID;
 
-    @Column(name = "image_file", columnDefinition = "VARCHAR(255)")
-    private String imageFile;
+    @Lob
+    @Column(name = "image_file")
+    private String imageBase64;
 
     //UploadServlet uploadServlet = new UploadServlet();
 
-    public Comment(String comment, int topicID, String imageFile) {
+    public Comment(String comment, int topicID, String imageBase64) {
         this.comment = comment;
         this.created = new Date();
         this.lastEdited = new Date();
         this.topicID = topicID;
-        this.imageFile = imageFile;
+        this.imageBase64 = imageBase64;
     }
 
 
@@ -76,12 +64,12 @@ public class Comment implements Serializable {
         this.topicID = topicID;
     }
 
-    public String getImageFile() {
-        return imageFile;
+    public String getImageBase64() {
+        return imageBase64;
     }
 
-    public void setImageFile(String imageID) {
-        this.imageFile = imageID;
+    public void setImageBase64(String imageID) {
+        this.imageBase64 = imageID;
     }
 
     public long getId() {
