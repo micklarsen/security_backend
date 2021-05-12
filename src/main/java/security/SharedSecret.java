@@ -7,7 +7,8 @@ import java.security.SecureRandom;
  * For production (and if a load-balancer is used) come up with a persistent key strategy */
 public class SharedSecret {
     private static byte[] secret;
-    public static byte[] getSharedKey() {
+
+    public static String getSharedKey() {
       /*
         System.out.println("******************* IMPORTANT ******************'");
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -18,13 +19,14 @@ public class SharedSecret {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         */
         //REMOVE BEFORE PRODUCTION
-        if(true){
-            return "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA".getBytes();
+        boolean isDeployed = (System.getenv("DEPLOYED") != null);
+
+        if (isDeployed) {
+            String secret = System.getenv("SHARED_SECRET");
+            return secret;
+        } else {
+            System.out.println("Not deployed");
+            return "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
         }
-        if (secret == null) {  //Or better read as an environment variable set on production server
-            secret = new byte[32];
-            new SecureRandom().nextBytes(secret);
-        }
-        return secret;
     }
 }
