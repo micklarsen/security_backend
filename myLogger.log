@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-05-17T15:40:05</date>
+  <millis>1621258805688</millis>
+  <sequence>0</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>logging.MyLogger</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>My first log</message>
+</record>
+<record>
+  <date>2021-05-17T15:40:05</date>
+  <millis>1621258805706</millis>
+  <sequence>1</sequence>
+  <logger>global</logger>
+  <level>FINE</level>
+  <class>logging.MyLogger</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>My second log</message>
+</record>
+<record>
+  <date>2021-05-17T15:40:05</date>
+  <millis>1621258805706</millis>
+  <sequence>2</sequence>
+  <logger>global</logger>
+  <level>SEVERE</level>
+  <class>logging.MyLogger</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>File read error.</message>
+  <exception>
+    <message>java.io.IOException: Could not read file.</message>
+    <frame>
+      <class>logging.MyLogger</class>
+      <method>main</method>
+      <line>52</line>
+    </frame>
+  </exception>
+</record>
+<record>
+  <date>2021-05-17T15:40:05</date>
+  <millis>1621258805717</millis>
+  <sequence>3</sequence>
+  <logger>global</logger>
+  <level>INFO</level>
+  <class>logging.Test</class>
+  <method>test</method>
+  <thread>1</thread>
+  <message>I'm from another class</message>
+</record>
+<record>
+  <date>2021-05-17T15:40:05</date>
+  <millis>1621258805717</millis>
+  <sequence>4</sequence>
+  <logger>global</logger>
+  <level>CONFIG</level>
+  <class>logging.MyLogger</class>
+  <method>methodTest</method>
+  <thread>1</thread>
+  <message>I'm from another method</message>
+</record>
+</log>
