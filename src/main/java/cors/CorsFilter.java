@@ -43,6 +43,7 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
         response.getHeaders().add("Access-Control-Allow-Credentials", "true");
         response.getHeaders().add("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD");
           response.getHeaders().add("Access-Control-Allow-Headers",
+
           // Whatever other non-standard/safe headers (see list above) 
           // you want the client to be able to send to the server,
           // put it in this list. And remove the ones you don't want.
@@ -52,6 +53,7 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
     /* Cross origin requests can be either simple requests or preflight request. We need to add this
      header to both types of requests. Only preflight requests need the previously added headers. */
 //     response.getHeaders().add("Access-Control-Allow-Origin", "https://dat4semsecurity.surge.sh");
-     response.getHeaders().add("Access-Control-Allow-Origin", "https://dat4semsecurity.surge.sh");
+//     response.getHeaders().add("Access-Control-Allow-Origin", "https://dat4semsecurity.surge.sh");
+     response.getHeaders().add("Access-Control-Allow-Origin", "http://localhost:3000");
   }
 }

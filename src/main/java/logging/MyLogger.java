@@ -25,7 +25,7 @@ public class MyLogger {
         // Since we are working with files IOException is needed
         try {
             // Filehandler to be able to add a file
-            FileHandler fh = new FileHandler("myLogger.log"); // ", true" if you do not want the file handler to overwrite and append instead
+            FileHandler fh = new FileHandler("target/4SEM_Security/myLogger.log"); // ", true" if you do not want the file handler to overwrite and append instead
             //fh.setFormatter(new SimpleFormatter()); // format it like it is shown in the console. Default is to output it as XML.
             // Set level of what to log in the file
             fh.setLevel(Level.FINE); // Everything above FINE

@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="windows-1252" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2021-05-17T15:40:05</date>
-  <millis>1621258805688</millis>
+  <date>2021-05-19T09:53:13</date>
+  <millis>1621410793602</millis>
   <sequence>0</sequence>
   <logger>global</logger>
   <level>INFO</level>
@@ -13,8 +13,8 @@
   <message>My first log</message>
 </record>
 <record>
-  <date>2021-05-17T15:40:05</date>
-  <millis>1621258805706</millis>
+  <date>2021-05-19T09:53:13</date>
+  <millis>1621410793617</millis>
   <sequence>1</sequence>
   <logger>global</logger>
   <level>FINE</level>
@@ -24,8 +24,8 @@
   <message>My second log</message>
 </record>
 <record>
-  <date>2021-05-17T15:40:05</date>
-  <millis>1621258805706</millis>
+  <date>2021-05-19T09:53:13</date>
+  <millis>1621410793617</millis>
   <sequence>2</sequence>
   <logger>global</logger>
   <level>SEVERE</level>
@@ -43,8 +43,8 @@
   </exception>
 </record>
 <record>
-  <date>2021-05-17T15:40:05</date>
-  <millis>1621258805717</millis>
+  <date>2021-05-19T09:53:13</date>
+  <millis>1621410793624</millis>
   <sequence>3</sequence>
   <logger>global</logger>
   <level>INFO</level>
@@ -54,8 +54,8 @@
   <message>I'm from another class</message>
 </record>
 <record>
-  <date>2021-05-17T15:40:05</date>
-  <millis>1621258805717</millis>
+  <date>2021-05-19T09:53:13</date>
+  <millis>1621410793624</millis>
   <sequence>4</sequence>
   <logger>global</logger>
   <level>CONFIG</level>
