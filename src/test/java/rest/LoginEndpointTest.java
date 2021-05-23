@@ -69,9 +69,9 @@ public class LoginEndpointTest {
 
             em.createQuery("delete from Person").executeUpdate();
             em.createQuery("delete from Role").executeUpdate();
-            p1 = new Person("someone@hotmail.com", "secretpassword", "13467964", "John", "Williams");
-            p2 = new Person("villads@gmail.com", "secretpassword", "65478931", "Villads", "Markmus");
-            p3 = new Person("someoneelse@hotmail.com", "secretpassword", "32132112", "Willy", "Keeper");
+            Person p1 = new Person("someone@hotmail.com", "someone", "xS$Mbw7$A6###J)`", "13467964", "John", "Williams");
+            Person p2 = new Person("villads@gmail.com", "vill4ds", "N6nvv*`MQBzBHBP,", "65478931", "Villads", "Markmus");
+            Person p3 = new Person("someoneelse@hotmail.com", "someoneelse", "Jnr[$[\"2c'jX_Bj[", "32132112", "Willy", "Keeper");
 
 
             Role userRole = new Role("user");
