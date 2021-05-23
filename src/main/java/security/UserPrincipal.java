@@ -9,6 +9,7 @@ import java.util.List;
 public class UserPrincipal implements Principal {
 
   private String username;
+
   private List<String> roles = new ArrayList<>();
 
   /* Create a UserPrincipal, given the Entity class Person*/

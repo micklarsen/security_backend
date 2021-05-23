@@ -44,7 +44,7 @@ public class LoginEndpoint {
 
     try {
       Person user = USER_FACADE.getVeryfiedUser(username, password);
-      String token = createToken(username, user.getRolesAsStrings());
+      String token = createToken(username, user.getUsername(), user.getRolesAsStrings());
       JsonObject responseJson = new JsonObject();
       responseJson.addProperty("username", username);
       responseJson.addProperty("token", token);
@@ -59,7 +59,7 @@ public class LoginEndpoint {
     throw new AuthenticationException("Invalid username or password! Please try again");
   }
 
-  private String createToken(String userName, List<String> roles) throws JOSEException {
+  private String createToken(String userName, String userAlias, List<String> roles) throws JOSEException {
 
     StringBuilder res = new StringBuilder();
     for (String string : roles) {
@@ -76,6 +76,7 @@ public class LoginEndpoint {
             .claim("username", userName)
             .claim("roles", rolesAsString)
             .claim("issuer", issuer)
+            .claim("userAlias", userAlias)
             .issueTime(date)
             .expirationTime(new Date(date.getTime() + TOKEN_EXPIRE_TIME))
             .build();

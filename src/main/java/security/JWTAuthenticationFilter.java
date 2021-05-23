@@ -81,7 +81,7 @@ public class JWTAuthenticationFilter implements ContainerRequestFilter {
      }
      String roles = signedJWT.getJWTClaimsSet().getClaim("roles").toString();
      String username = signedJWT.getJWTClaimsSet().getClaim("username").toString();
-     
+
      String[] rolesArray = roles.split(",");
      
      return new UserPrincipal(username, rolesArray);
