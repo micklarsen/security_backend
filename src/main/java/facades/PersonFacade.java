@@ -66,13 +66,31 @@ public class PersonFacade {
         try {
             user = em.find(Person.class, email);
             if (user == null) {
-                throw new NotFoundException("Invalid user name or email");
+                throw new NotFoundException("email");
             }
         } finally {
             em.close();
         }
         return new PersonDTO(user);
     }
+
+    public PersonDTO getPersonByUsername(String username) throws NotFoundException {
+        EntityManager em = emf.createEntityManager();
+
+        Person user;
+        PersonDTO pDTO;
+
+        try {
+            user = em.find(Person.class, username);
+            if (user == null) {
+                throw new NotFoundException("Invalid username");
+            }
+        } finally {
+            em.close();
+        }
+        return new PersonDTO(user);
+    }
+
 
     public PersonsDTO getAllPersons() throws NotFoundException {
 
@@ -92,6 +110,7 @@ public class PersonFacade {
     public PersonDTO makePerson(PersonDTO person) throws AuthenticationException {
 
         String email = person.getEmail();
+        String username = person.getUsername();
         String userPass = person.getPassword();
         String phone = person.getPhone();
         String fName = person.getFirstName();
@@ -104,7 +123,7 @@ public class PersonFacade {
         try {
             newPerson = em.find(Person.class, email);
             if (newPerson == null && email.length() > 0 && userPass.length() > 0) {
-                newPerson = new Person(email, userPass, phone, fName, lName);
+                newPerson = new Person(email, username, userPass, phone, fName, lName);
                 Role userRole = em.find(Role.class, "user");
                 newPerson.addRole(userRole);
 

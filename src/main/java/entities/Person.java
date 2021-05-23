@@ -24,6 +24,11 @@ public class Person implements Serializable {
 
     @Basic(optional = false)
     @NotNull
+    @Column(name = "username", length = 50, unique = true)
+    private String username;
+
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 255)
     @Column(name = "user_pass")
     private String userPass;
@@ -49,7 +54,8 @@ public class Person implements Serializable {
     public Person() {
     }
 
-    public Person(String email, String userPass, String phone, String firstName, String lastName) {
+    public Person(String email, String username, String userPass, String phone, String firstName, String lastName) {
+        this.username = username;
         this.phone = phone;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -107,6 +113,14 @@ public class Person implements Serializable {
             commentList.add(userComment);
             userComment.setPerson(this);
         }
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public List<Role> getRoleList() {

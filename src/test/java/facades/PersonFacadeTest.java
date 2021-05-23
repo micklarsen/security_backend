@@ -58,9 +58,9 @@ public class PersonFacadeTest {
             em.createQuery("delete from Person").executeUpdate();
             em.createQuery("delete from Role").executeUpdate();
 
-            p1 = new Person("someone@hotmail.com", "secretpassword", "13467964", "John", "Williams");
-            p2 = new Person("villads@gmail.com", "secretpassword", "65478931", "Villads", "Markmus");
-            p3 = new Person("someoneelse@hotmail.com", "secretpassword", "32132112", "Willy", "Keeper");
+            p1 = new Person("someone@hotmail.com", "someone", "secretpassword", "13467964", "John", "Williams");
+            p2 = new Person("villads@gmail.com", "vill4ds", "secretpassword", "65478931", "Villads", "Markmus");
+            p3 = new Person("someoneelse@hotmail.com", "someoneElse", "secretpassword", "32132112", "Willy", "Keeper");
 
             r1 = new Role("user");
             r2 = new Role("admin");
@@ -109,12 +109,13 @@ public class PersonFacadeTest {
         EntityManager em = emf.createEntityManager();
 
         String email = "ulla@hotmail.com";
+        String username = "ulla";
         String phone = "123456";
         String firstName = "Ulla";
         String lastName = "Allu";
         String password = "muffe";
 
-        Person p = new Person(email, password, phone, firstName, lastName);
+        Person p = new Person(email, username, password, phone, firstName, lastName);
 
 
         System.out.println("Person: " + p);
