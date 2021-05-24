@@ -119,7 +119,7 @@ public class LoginEndpoint {
         LOGGER.finer("Finest example on LOGGER handler completed.");
         
       Person user = USER_FACADE.getVeryfiedUser(username, password);
-      String token = createToken(username, user.getRolesAsStrings());
+      String token = createToken(username, user.getUsername(), user.getRolesAsStrings());
       JsonObject responseJson = new JsonObject();
       responseJson.addProperty("username", username);
       responseJson.addProperty("token", token);
@@ -134,8 +134,10 @@ public class LoginEndpoint {
     throw new AuthenticationException("Invalid username or password! Please try again");
   }
 
+
   private String createToken(String userName, List<String> roles) throws JOSEException {
 LOGGER.log(Level.SEVERE, "TOKEN");
+
 
     StringBuilder res = new StringBuilder();
     for (String string : roles) {
@@ -143,7 +145,8 @@ LOGGER.log(Level.SEVERE, "TOKEN");
       res.append(",");
     }
     String rolesAsString = res.length() > 0 ? res.substring(0, res.length() - 1) : "";
-    String issuer = "4SEMSecurity";
+
+    String issuer = "DAT4SEM_Security";
 
     String tokenInfo = "Token info: " + "User: " + userName + " - role: " + rolesAsString + " - issuer: " + issuer;
     LOGGER.log(Level.INFO, tokenInfo);
@@ -157,6 +160,7 @@ LOGGER.log(Level.SEVERE, "TOKEN");
             .claim("username", userName)
             .claim("roles", rolesAsString)
             .claim("issuer", issuer)
+            .claim("userAlias", userAlias)
             .issueTime(date)
             .expirationTime(new Date(date.getTime() + TOKEN_EXPIRE_TIME))
             .build();

@@ -10,9 +10,10 @@ public class PersonDTO {
     private String phone;
     private String firstName;
     private String lastName;
-    private String street;
+    /* private String street;
     private String city;
-    private int zipcode;
+    private int zipcode; */
+    private String username;
 
     private String password;
 
@@ -22,6 +23,15 @@ public class PersonDTO {
         this.firstName = person.getFirstName();
         this.lastName = person.getLastName();
         this.password = person.getUserPass();
+        this.username = person.getUsername();
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
