@@ -20,7 +20,7 @@ public class Log {
         }
         // FileHandler is used to write to the given filename
         fh = new FileHandler(file_name, true);
-        logger = Logger.getLogger("test");
+        logger = Logger.getLogger("log.txt");
         logger.addHandler(fh);
         SimpleFormatter formatter = new SimpleFormatter();
         fh.setFormatter(formatter);

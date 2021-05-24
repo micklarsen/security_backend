@@ -7,28 +7,28 @@ import java.util.logging.*;
 public class MyLogger {
 
     // Logger for this class
-    private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);  // Name your logger after your class. Can also use MyLogger.class.getName() to include packages
+    public final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);  // Name your logger after your class. Can also use MyLogger.class.getName() to include packages
 
-    private static void setupLogger() {
+    public static void setupLogger() {
         // Get rid of any handlers that the root logger has
         LogManager.getLogManager().reset();
         // Set the level of the logger
         LOGGER.setLevel(Level.ALL);
 
-        // ConsoleHandler
-        ConsoleHandler ch = new ConsoleHandler();
-        // The level of what should be displayed in the console
-        ch.setLevel(Level.SEVERE);
-        // Add the handler to the logger
-        LOGGER.addHandler(ch);
+//        // ConsoleHandler
+//        ConsoleHandler ch = new ConsoleHandler();
+//        // The level of what should be displayed in the console
+//        ch.setLevel(Level.SEVERE);
+//        // Add the handler to the logger
+//        LOGGER.addHandler(ch);
 
         // Since we are working with files IOException is needed
         try {
             // Filehandler to be able to add a file
-            FileHandler fh = new FileHandler("target/4SEM_Security/myLogger.log"); // ", true" if you do not want the file handler to overwrite and append instead
+            FileHandler fh = new FileHandler("myLogger.log", true); // ", true" if you do not want the file handler to overwrite and append instead
             //fh.setFormatter(new SimpleFormatter()); // format it like it is shown in the console. Default is to output it as XML.
             // Set level of what to log in the file
-            fh.setLevel(Level.FINE); // Everything above FINE
+            fh.setLevel(Level.ALL); // Everything above FINE
             // Add the handler to the logger
             LOGGER.addHandler(fh);
         } catch (IOException e) {
@@ -48,13 +48,13 @@ public class MyLogger {
         LOGGER.fine("My second log");
 
         // purposly throw an error and log it.
-        try {
-            throw new java.io.IOException("Could not read file.");
-        } catch (java.io.IOException e) {
-            LOGGER.log(Level.SEVERE, "File read error.", e);
-            // let the error happen after we've logged it
-            // throw e;
-        }
+//        try {
+//            throw new java.io.IOException("Could not read file.");
+//        } catch (java.io.IOException e) {
+//            LOGGER.log(Level.SEVERE, "File read error.", e);
+//            // let the error happen after we've logged it
+//            // throw e;
+//        }
 
         // Class test
         Test.test();
