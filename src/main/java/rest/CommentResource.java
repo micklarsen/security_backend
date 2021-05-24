@@ -5,11 +5,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.SecurityContext;
-
-import errorhandling.ExceptionDTO;
 import utils.EMF_Creator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -18,11 +14,17 @@ import dto.CommentsDTO;
 import errorhandling.CommentException;
 import errorhandling.NotFoundException;
 import facades.CommentFacade;
+import java.io.IOException;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
 import java.security.NoSuchAlgorithmException;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 @Path("comments")
 public class CommentResource {
@@ -31,6 +33,11 @@ public class CommentResource {
     private static final CommentFacade FACADE = CommentFacade.getCommentFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
+    private static final Logger LOGGER = Logger.getLogger(CommentResource.class.getName());
+    
+     private ConsoleHandler consoleHandler = null;
+  private FileHandler fileHandler  = null;
+    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getCommentsForAll() {
@@ -48,7 +55,36 @@ public class CommentResource {
     @Path("all")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String getAllComments() throws CommentException {
+    public String getAllComments() throws CommentException, IOException {
+//        FsLogger logger = FsLogger.getInstance();
+//        logger.warning("New comment logger test");
+        consoleHandler = new ConsoleHandler();
+            fileHandler  = new FileHandler("AllComments.log", true);
+            
+            //Adding formatter
+            fileHandler.setFormatter(new SimpleFormatter());
+             
+            //Assigning handlers to LOGGER object
+            LOGGER.addHandler(consoleHandler);
+            LOGGER.addHandler(fileHandler);
+             
+            //Setting levels to handlers and LOGGER
+            consoleHandler.setLevel(Level.ALL);
+            fileHandler.setLevel(Level.ALL);
+            
+            LOGGER.setLevel(Level.ALL);
+             
+            LOGGER.config("Configuration done.");
+             
+            //Console handler removed
+            LOGGER.removeHandler(consoleHandler);
+             
+            LOGGER.log(Level.FINE, "Finer logged");
+            
+            LOGGER.log(Level.SEVERE, "SEVERE logged");
+        
+        LOGGER.finer("Finest example on LOGGER handler completed.");
+        
         CommentsDTO comment = FACADE.getAllComments();
         return GSON.toJson(comment);
     }

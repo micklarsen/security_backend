@@ -24,7 +24,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import security.errorhandling.AuthenticationException;
 import errorhandling.NotFoundExceptionMapper;
+import java.io.IOException;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.LogManager;
+import java.util.logging.SimpleFormatter;
 import javax.persistence.EntityManagerFactory;
+import logging.FsLogger;
 import utils.EMF_Creator;
 
 @Path("login")
@@ -34,15 +40,85 @@ public class LoginEndpoint {
   private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
   public static final PersonFacade USER_FACADE = PersonFacade.getPersonFacade(EMF);
   
+  private static final Logger LOGGER = Logger.getLogger(LoginEndpoint.class.getName());
+  
+  private ConsoleHandler consoleHandler = null;
+  private FileHandler fileHandler  = null;
+  
+  
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public Response login(String jsonString) throws AuthenticationException {
+  public Response login(String jsonString) throws AuthenticationException, IOException {
     JsonObject json = JsonParser.parseString(jsonString).getAsJsonObject();
     String username = json.get("username").getAsString();
     String password = json.get("password").getAsString();
-
+//    FsLogger logger = FsLogger.getInstance();
+//        logger.warning("New login logger test");
+    
+//    Logger.getLogger(LoginEndpoint.class.getName()).log(Level.CONFIG, "GLOBAL TEST");
+     
+//        try{
+//            //Creating consoleHandler and fileHandler
+//            consoleHandler = new ConsoleHandler();
+//            fileHandler  = new FileHandler("./login.log");
+//             
+//            //Assigning handlers to LOGGER object
+//            LOGGER.addHandler(consoleHandler);
+//            LOGGER.addHandler(fileHandler);
+//             
+//            //Setting levels to handlers and LOGGER
+//            consoleHandler.setLevel(Level.ALL);
+//            fileHandler.setLevel(Level.ALL);
+//            LOGGER.setLevel(Level.ALL);
+//             
+//            LOGGER.config("Configuration done.");
+//             
+//            //Console handler removed
+//            LOGGER.removeHandler(consoleHandler);
+//             
+//            LOGGER.log(Level.FINE, "Finer logged");
+//        }catch(IOException exception){
+//            LOGGER.log(Level.SEVERE, "Error occur in FileHandler.", exception);
+//        }
+//         
+//        LOGGER.finer("Finest example on LOGGER handler completed.");
+//         
+//    
+//    
+    
     try {
+        // Get rid of any handlers that the root logger has
+        LogManager.getLogManager().reset();
+        //Creating consoleHandler and fileHandler
+            consoleHandler = new ConsoleHandler();
+            fileHandler  = new FileHandler("login.log", true);
+            
+            //Adding formatter
+            fileHandler.setFormatter(new SimpleFormatter());
+             
+            //Assigning handlers to LOGGER object
+            LOGGER.addHandler(consoleHandler);
+            LOGGER.addHandler(fileHandler);
+             
+            //Setting levels to handlers and LOGGER
+            consoleHandler.setLevel(Level.ALL);
+            fileHandler.setLevel(Level.ALL);
+            
+            LOGGER.setLevel(Level.ALL);
+             
+            LOGGER.config("Configuration done.");
+            LOGGER.config(username);
+             
+            //Console handler removed
+            LOGGER.removeHandler(consoleHandler);
+             
+            LOGGER.log(Level.FINE, "Finer logged");
+            
+            LOGGER.log(Level.SEVERE, "SEVERE logged");
+        
+        LOGGER.finer("Finest example on LOGGER handler completed.");
+        
       Person user = USER_FACADE.getVeryfiedUser(username, password);
       String token = createToken(username, user.getRolesAsStrings());
       JsonObject responseJson = new JsonObject();
@@ -60,6 +136,7 @@ public class LoginEndpoint {
   }
 
   private String createToken(String userName, List<String> roles) throws JOSEException {
+LOGGER.log(Level.SEVERE, "TOKEN");
 
     StringBuilder res = new StringBuilder();
     for (String string : roles) {
@@ -67,8 +144,13 @@ public class LoginEndpoint {
       res.append(",");
     }
     String rolesAsString = res.length() > 0 ? res.substring(0, res.length() - 1) : "";
-    String issuer = "CA3-gruppe-8";
+    String issuer = "4SEMSecurity";
 
+    String tokenInfo = "Token info: " + "User: " + userName + " - role: " + rolesAsString + " - issuer: " + issuer;
+    LOGGER.log(Level.INFO, tokenInfo);
+    
+    fileHandler.close();
+    
     JWSSigner signer = new MACSigner(SharedSecret.getSharedKey());
     Date date = new Date();
     JWTClaimsSet claimsSet = new JWTClaimsSet.Builder()

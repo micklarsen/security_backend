@@ -2,6 +2,7 @@
 package rest;
 
 import dto.PersonDTO;
+import errorhandling.NotFoundException;
 import javax.ws.rs.core.Response;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -97,7 +98,7 @@ public class PersonResourceTest {
      */
     @Disabled
     @Test
-    public void testGetPersonByEmail() throws Exception {
+    public void testGetPersonByEmail() throws NotFoundException  {
         System.out.println("getPersonByEmail");
         String email = "";
         PersonResource instance = new PersonResource();
@@ -113,7 +114,7 @@ public class PersonResourceTest {
      */
     @Disabled
     @Test
-    public void testGetAllPersons() throws Exception {
+    public void testGetAllPersons() throws NotFoundException {
         System.out.println("getAllPersons");
         PersonResource instance = new PersonResource();
         String expResult = "";
