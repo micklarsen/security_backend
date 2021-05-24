@@ -30,7 +30,6 @@ import java.util.logging.FileHandler;
 import java.util.logging.LogManager;
 import java.util.logging.SimpleFormatter;
 import javax.persistence.EntityManagerFactory;
-import logging.FsLogger;
 import utils.EMF_Creator;
 
 @Path("login")
