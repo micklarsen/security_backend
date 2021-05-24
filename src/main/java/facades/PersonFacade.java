@@ -134,8 +134,14 @@ public class PersonFacade {
                 if ((email.length() == 0 || userPass.length() == 0)) {
                     throw new AuthenticationException("Missing input");
                 }
-                if (newPerson.getEmail().equalsIgnoreCase(person.getEmail())) {
-                    throw new AuthenticationException("User exist");
+                if (newPerson.getEmail().equalsIgnoreCase(person.getEmail()) && !(newPerson.getUsername().equalsIgnoreCase(person.getUsername()))) {
+                    throw new AuthenticationException("User email exist");
+                }
+                if (!(newPerson.getEmail().equalsIgnoreCase(person.getEmail())) && newPerson.getUsername().equalsIgnoreCase(person.getUsername())) {
+                    throw new AuthenticationException("Username exist");
+                }
+                if (newPerson.getUsername().equalsIgnoreCase(person.getUsername()) && (newPerson.getEmail().equalsIgnoreCase(person.getEmail()))) {
+                    throw new AuthenticationException("Username and email exist");
                 }
             }
         } finally {
