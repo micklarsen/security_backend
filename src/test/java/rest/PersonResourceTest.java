@@ -50,6 +50,7 @@ public class PersonResourceTest {
     /**
      * Test of allUsers method, of class PersonResource.
      */
+    /*
     @Disabled
     @Test
     public void testAllUsers() {
@@ -61,7 +62,7 @@ public class PersonResourceTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
+*/
     /**
      * Test of getFromUser method, of class PersonResource.
      */
@@ -95,6 +96,7 @@ public class PersonResourceTest {
     /**
      * Test of getPersonByEmail method, of class PersonResource.
      */
+    /*
     @Disabled
     @Test
     public void testGetPersonByEmail() throws Exception {
@@ -107,10 +109,11 @@ public class PersonResourceTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
+*/
     /**
      * Test of getAllPersons method, of class PersonResource.
      */
+    /*
     @Disabled
     @Test
     public void testGetAllPersons() throws Exception {
@@ -122,7 +125,7 @@ public class PersonResourceTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
+*/
     /**
      * Test of addUser method, of class PersonResource.
      */
@@ -142,6 +145,7 @@ public class PersonResourceTest {
     /**
      * Test of updatePerson method, of class PersonResource.
      */
+    /*
     @Disabled
     @Test
     public void testUpdatePerson() throws Exception {
@@ -154,10 +158,11 @@ public class PersonResourceTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
-
+*/
     /**
      * Test of deletePerson method, of class PersonResource.
      */
+    /*
     @Disabled
     @Test
     public void testDeletePerson() throws Exception {
@@ -171,5 +176,5 @@ public class PersonResourceTest {
         fail("The test case is a prototype.");
     }
 
-    
+    */
 }

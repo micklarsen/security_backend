@@ -10,9 +10,9 @@ public class PersonDTO {
     private String phone;
     private String firstName;
     private String lastName;
-    private String street;
+    /* private String street;
     private String city;
-    private int zipcode;
+    private int zipcode; */
     private String username;
 
     private String password;
