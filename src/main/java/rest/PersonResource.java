@@ -47,6 +47,7 @@ public class PersonResource {
     }
 
     //Just to verify if the database is setup
+    /*
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("count")
@@ -61,6 +62,7 @@ public class PersonResource {
             em.close();
         }
     }
+    */
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -79,14 +81,14 @@ public class PersonResource {
         String thisuser = securityContext.getUserPrincipal().getName();
         return "{\"msg\": \"Hello to (admin) User: " + thisuser + "\"}";
     }
-    
+    /*
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("person/{email}")
     public String getPersonByEmail(@PathParam("email") String email) throws NotFoundException {
         return GSON.toJson(FACADE.getPersonByEmail(email));
     }
-    
+
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     @Path("person/all")
@@ -94,7 +96,7 @@ public class PersonResource {
         PersonsDTO psDTO = FACADE.getAllPersons();
         return GSON.toJson(psDTO);
     }
-    
+    */
     
     @POST
     @Produces({MediaType.APPLICATION_JSON})
@@ -104,7 +106,7 @@ public class PersonResource {
         PersonDTO newPerson = FACADE.makePerson(u);
         return newPerson;
     }    
-    
+    /*
     @PUT
     @Path("person")
     @Produces({MediaType.APPLICATION_JSON})
@@ -122,4 +124,6 @@ public class PersonResource {
         PersonDTO personDelete = FACADE.deletePerson(email);
         return GSON.toJson(personDelete);
     }
+
+     */
 }

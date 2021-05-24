@@ -4,17 +4,23 @@ import entities.Person;
 import entities.Role;
 
 import io.restassured.RestAssured;
+
 import static io.restassured.RestAssured.given;
+
 import io.restassured.http.ContentType;
 import io.restassured.parsing.Parser;
+
 import java.net.URI;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.core.UriBuilder;
+
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+
 import static org.hamcrest.Matchers.equalTo;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,6 +29,9 @@ import utils.EMF_Creator;
 
 //@Disabled
 public class LoginEndpointTest {
+
+    private Person p1, p2, p3;
+    private Role r1, r2;
 
     private static final int SERVER_PORT = 7777;
     private static final String SERVER_URL = "http://localhost/api";
@@ -35,8 +44,6 @@ public class LoginEndpointTest {
         ResourceConfig rc = ResourceConfig.forApplication(new ApplicationConfig());
         return GrizzlyHttpServerFactory.createHttpServer(BASE_URI, rc);
     }
-
-    Person p1, p2, p3;
 
     @BeforeAll
     public static void setUpClass() {
@@ -66,22 +73,21 @@ public class LoginEndpointTest {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-
             em.createQuery("delete from Person").executeUpdate();
             em.createQuery("delete from Role").executeUpdate();
-            p1 = new Person("someone@hotmail.com", "secretpassword", "13467964", "John", "Williams");
-            p2 = new Person("villads@gmail.com", "secretpassword", "65478931", "Villads", "Markmus");
-            p3 = new Person("someoneelse@hotmail.com", "secretpassword", "32132112", "Willy", "Keeper");
 
+            p1 = new Person("someone@hotmail.com", "someone", "secretpassword", "13467964", "John", "Williams");
+            p2 = new Person("villads@gmail.com", "vill4ds", "secretpassword", "65478931", "Villads", "Markmus");
+            p3 = new Person("someoneelse@hotmail.com", "someoneElse", "secretpassword", "32132112", "Willy", "Keeper");
 
-            Role userRole = new Role("user");
-            Role adminRole = new Role("admin");
-            p1.addRole(userRole);
-            p2.addRole(adminRole);
-            p3.addRole(userRole);
-            p3.addRole(adminRole);
-            em.persist(userRole);
-            em.persist(adminRole);
+            r1 = new Role("user");
+            r2 = new Role("admin");
+            p1.addRole(r1);
+            p2.addRole(r2);
+            p3.addRole(r1);
+            p3.addRole(r2);
+            em.persist(r1);
+            em.persist(r2);
             em.persist(p1);
             em.persist(p2);
             em.persist(p3);
@@ -137,7 +143,7 @@ public class LoginEndpointTest {
                 .when()
                 .get("/info/admin").then()
                 .statusCode(200)
-                .body("msg", equalTo("Hello to (admin) User: " + p2.getEmail()));
+                .body("msg", equalTo("Hello to (admin) User: " + p2.getUsername()));
     }
 
     @Test
@@ -149,7 +155,7 @@ public class LoginEndpointTest {
                 .when()
                 .get("/info/user").then()
                 .statusCode(200)
-                .body("msg", equalTo("Hello to User: " + p1.getEmail()));
+                .body("msg", equalTo("Hello to User: " + p1.getUsername()));
     }
 
     @Test
@@ -176,7 +182,8 @@ public class LoginEndpointTest {
 
     @Test
     public void testRestForMultiRole1() {
-        login("someoneelse@hotmail.com", "secretpassword");
+        System.out.println(p2.getEmail());
+        login("villads@gmail.com", "secretpassword");
         given()
                 .contentType("application/json")
                 .accept(ContentType.JSON)
@@ -184,19 +191,7 @@ public class LoginEndpointTest {
                 .when()
                 .get("/info/admin").then()
                 .statusCode(200)
-                .body("msg", equalTo("Hello to (admin) User: " + p3.getEmail()));
-    }
-
-    @Test
-    public void testRestForMultiRole2() {
-        login("someoneelse@hotmail.com", "secretpassword");
-        given()
-                .contentType("application/json")
-                .header("x-access-token", securityToken)
-                .when()
-                .get("/info/user").then()
-                .statusCode(200)
-                .body("msg", equalTo("Hello to User: " + p3.getEmail()));
+                .body("msg", equalTo("Hello to (admin) User: " + p2.getUsername()));
     }
 
     @Test
