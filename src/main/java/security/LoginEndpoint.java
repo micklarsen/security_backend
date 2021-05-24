@@ -48,7 +48,7 @@ public class LoginEndpoint {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  public Response login(String jsonString) throws AuthenticationException, IOException {
+  public Response login(String jsonString) throws AuthenticationException, IOException, JOSEException {
     JsonObject json = JsonParser.parseString(jsonString).getAsJsonObject();
     String username = json.get("username").getAsString();
     String password = json.get("password").getAsString();
@@ -119,13 +119,13 @@ public class LoginEndpoint {
         LOGGER.finer("Finest example on LOGGER handler completed.");
         
       Person user = USER_FACADE.getVeryfiedUser(username, password);
-      String token = createToken(username, user.getUsername(), user.getRolesAsStrings());
+      String token = createToken(username, user.getRolesAsStrings());
       JsonObject responseJson = new JsonObject();
       responseJson.addProperty("username", username);
       responseJson.addProperty("token", token);
       return Response.ok(new Gson().toJson(responseJson)).build();
 
-    } catch (JOSEException | AuthenticationException ex) {
+    } catch (AuthenticationException ex) {
       if (ex instanceof AuthenticationException) {
         throw (AuthenticationException) ex;
       }
@@ -160,7 +160,7 @@ LOGGER.log(Level.SEVERE, "TOKEN");
             .claim("username", userName)
             .claim("roles", rolesAsString)
             .claim("issuer", issuer)
-            .claim("userAlias", userAlias)
+//            .claim("userAlias", userAlias)
             .issueTime(date)
             .expirationTime(new Date(date.getTime() + TOKEN_EXPIRE_TIME))
             .build();
