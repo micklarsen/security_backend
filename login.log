@@ -1,0 +1,154 @@
+maj 25, 2021 5:40:14 PM security.LoginEndpoint login
+CONFIG: Configuration done.
+maj 25, 2021 5:40:14 PM security.LoginEndpoint login
+CONFIG: villads@gmail.com
+maj 25, 2021 5:40:14 PM security.LoginEndpoint login
+FINE: Finer logged
+maj 25, 2021 5:40:14 PM security.LoginEndpoint login
+SEVERE: SEVERE logged
+maj 25, 2021 5:40:14 PM security.LoginEndpoint login
+FINER: Finest example on LOGGER handler completed.
+maj 25, 2021 5:40:15 PM security.LoginEndpoint createToken
+SEVERE: TOKEN
+maj 25, 2021 5:40:15 PM security.LoginEndpoint createToken
+INFO: Token info: User: villads@gmail.com - role: admin - issuer: DAT4SEM_Security
+maj 25, 2021 5:40:20 PM security.LoginEndpoint login
+CONFIG: Configuration done.
+maj 25, 2021 5:40:20 PM security.LoginEndpoint login
+CONFIG: villads@gmail.com
+maj 25, 2021 5:40:20 PM security.LoginEndpoint login
+FINE: Finer logged
+maj 25, 2021 5:40:20 PM security.LoginEndpoint login
+SEVERE: SEVERE logged
+maj 25, 2021 5:40:20 PM security.LoginEndpoint login
+FINER: Finest example on LOGGER handler completed.
+maj 25, 2021 5:40:20 PM security.LoginEndpoint createToken
+SEVERE: TOKEN
+maj 25, 2021 5:40:20 PM security.LoginEndpoint createToken
+INFO: Token info: User: villads@gmail.com - role: admin - issuer: DAT4SEM_Security
+maj 25, 2021 5:40:24 PM security.LoginEndpoint login
+CONFIG: Configuration done.
+maj 25, 2021 5:40:24 PM security.LoginEndpoint login
+CONFIG: someone@hotmail.com
+maj 25, 2021 5:40:24 PM security.LoginEndpoint login
+FINE: Finer logged
+maj 25, 2021 5:40:24 PM security.LoginEndpoint login
+SEVERE: SEVERE logged
+maj 25, 2021 5:40:24 PM security.LoginEndpoint login
+FINER: Finest example on LOGGER handler completed.
+maj 25, 2021 5:40:24 PM security.LoginEndpoint createToken
+SEVERE: TOKEN
+maj 25, 2021 5:40:24 PM security.LoginEndpoint createToken
+INFO: Token info: User: someone@hotmail.com - role: user - issuer: DAT4SEM_Security
+maj 25, 2021 5:40:29 PM security.LoginEndpoint login
+CONFIG: Configuration done.
+maj 25, 2021 5:40:29 PM security.LoginEndpoint login
+CONFIG: someone@hotmail.com
+maj 25, 2021 5:40:29 PM security.LoginEndpoint login
+FINE: Finer logged
+maj 25, 2021 5:40:29 PM security.LoginEndpoint login
+SEVERE: SEVERE logged
+maj 25, 2021 5:40:29 PM security.LoginEndpoint login
+FINER: Finest example on LOGGER handler completed.
+maj 25, 2021 5:40:29 PM security.LoginEndpoint createToken
+SEVERE: TOKEN
+maj 25, 2021 5:40:29 PM security.LoginEndpoint createToken
+INFO: Token info: User: someone@hotmail.com - role: user - issuer: DAT4SEM_Security
+maj 25, 2021 5:40:31 PM security.LoginEndpoint login
+CONFIG: Configuration done.
+maj 25, 2021 5:40:31 PM security.LoginEndpoint login
+CONFIG: villads@gmail.com
+maj 25, 2021 5:40:31 PM security.LoginEndpoint login
+FINE: Finer logged
+maj 25, 2021 5:40:31 PM security.LoginEndpoint login
+SEVERE: SEVERE logged
+maj 25, 2021 5:40:31 PM security.LoginEndpoint login
+FINER: Finest example on LOGGER handler completed.
+maj 25, 2021 5:40:31 PM security.LoginEndpoint createToken
+SEVERE: TOKEN
+maj 25, 2021 5:40:31 PM security.LoginEndpoint createToken
+INFO: Token info: User: villads@gmail.com - role: admin - issuer: DAT4SEM_Security
+maj 25, 2021 5:46:09 PM security.LoginEndpoint login
+CONFIG: Configuration done.
+maj 25, 2021 5:46:09 PM security.LoginEndpoint login
+CONFIG: villads@gmail.com
+maj 25, 2021 5:46:09 PM security.LoginEndpoint login
+FINE: Finer logged
+maj 25, 2021 5:46:09 PM security.LoginEndpoint login
+SEVERE: SEVERE logged
+maj 25, 2021 5:46:09 PM security.LoginEndpoint login
+FINER: Finest example on LOGGER handler completed.
+maj 25, 2021 5:46:09 PM security.LoginEndpoint createToken
+SEVERE: TOKEN
+maj 25, 2021 5:46:09 PM security.LoginEndpoint createToken
+INFO: Token info: User: villads@gmail.com - role: admin - issuer: DAT4SEM_Security
+maj 25, 2021 6:12:22 PM security.LoginEndpoint login
+CONFIG: Configuration done.
+maj 25, 2021 6:12:22 PM security.LoginEndpoint login
+CONFIG: villads@gmail.com
+maj 25, 2021 6:12:22 PM security.LoginEndpoint login
+FINE: Finer logged
+maj 25, 2021 6:12:22 PM security.LoginEndpoint login
+SEVERE: SEVERE logged
+maj 25, 2021 6:12:22 PM security.LoginEndpoint login
+FINER: Finest example on LOGGER handler completed.
+maj 25, 2021 6:12:23 PM security.LoginEndpoint createToken
+SEVERE: TOKEN
+maj 25, 2021 6:12:23 PM security.LoginEndpoint createToken
+INFO: Token info: User: villads@gmail.com - role: admin - issuer: DAT4SEM_Security
+maj 25, 2021 6:12:26 PM security.LoginEndpoint login
+CONFIG: Configuration done.
+maj 25, 2021 6:12:26 PM security.LoginEndpoint login
+CONFIG: villads@gmail.com
+maj 25, 2021 6:12:26 PM security.LoginEndpoint login
+FINE: Finer logged
+maj 25, 2021 6:12:26 PM security.LoginEndpoint login
+SEVERE: SEVERE logged
+maj 25, 2021 6:12:26 PM security.LoginEndpoint login
+FINER: Finest example on LOGGER handler completed.
+maj 25, 2021 6:12:27 PM security.LoginEndpoint createToken
+SEVERE: TOKEN
+maj 25, 2021 6:12:27 PM security.LoginEndpoint createToken
+INFO: Token info: User: villads@gmail.com - role: admin - issuer: DAT4SEM_Security
+maj 25, 2021 6:12:30 PM security.LoginEndpoint login
+CONFIG: Configuration done.
+maj 25, 2021 6:12:30 PM security.LoginEndpoint login
+CONFIG: someone@hotmail.com
+maj 25, 2021 6:12:30 PM security.LoginEndpoint login
+FINE: Finer logged
+maj 25, 2021 6:12:30 PM security.LoginEndpoint login
+SEVERE: SEVERE logged
+maj 25, 2021 6:12:30 PM security.LoginEndpoint login
+FINER: Finest example on LOGGER handler completed.
+maj 25, 2021 6:12:30 PM security.LoginEndpoint createToken
+SEVERE: TOKEN
+maj 25, 2021 6:12:30 PM security.LoginEndpoint createToken
+INFO: Token info: User: someone@hotmail.com - role: user - issuer: DAT4SEM_Security
+maj 25, 2021 6:12:34 PM security.LoginEndpoint login
+CONFIG: Configuration done.
+maj 25, 2021 6:12:34 PM security.LoginEndpoint login
+CONFIG: someone@hotmail.com
+maj 25, 2021 6:12:34 PM security.LoginEndpoint login
+FINE: Finer logged
+maj 25, 2021 6:12:34 PM security.LoginEndpoint login
+SEVERE: SEVERE logged
+maj 25, 2021 6:12:34 PM security.LoginEndpoint login
+FINER: Finest example on LOGGER handler completed.
+maj 25, 2021 6:12:35 PM security.LoginEndpoint createToken
+SEVERE: TOKEN
+maj 25, 2021 6:12:35 PM security.LoginEndpoint createToken
+INFO: Token info: User: someone@hotmail.com - role: user - issuer: DAT4SEM_Security
+maj 25, 2021 6:12:36 PM security.LoginEndpoint login
+CONFIG: Configuration done.
+maj 25, 2021 6:12:36 PM security.LoginEndpoint login
+CONFIG: villads@gmail.com
+maj 25, 2021 6:12:36 PM security.LoginEndpoint login
+FINE: Finer logged
+maj 25, 2021 6:12:36 PM security.LoginEndpoint login
+SEVERE: SEVERE logged
+maj 25, 2021 6:12:36 PM security.LoginEndpoint login
+FINER: Finest example on LOGGER handler completed.
+maj 25, 2021 6:12:37 PM security.LoginEndpoint createToken
+SEVERE: TOKEN
+maj 25, 2021 6:12:37 PM security.LoginEndpoint createToken
+INFO: Token info: User: villads@gmail.com - role: admin - issuer: DAT4SEM_Security
