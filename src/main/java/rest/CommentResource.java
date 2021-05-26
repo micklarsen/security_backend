@@ -87,7 +87,6 @@ public class CommentResource {
 //
 //        return "{\"count\":" + count + "}";
 //    }
-
     @Path("all")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
@@ -242,13 +241,14 @@ public class CommentResource {
         //Console handler removed
         LOGGER.removeHandler(consoleHandler);
 
-        //Log request to create a comment 
-        LOGGER.log(Level.INFO, "Requested access to create a comment: {0}", comment);
-
-        fileHandler.close();
-
         CommentDTO c = GSON.fromJson(comment, CommentDTO.class);
         CommentDTO commentAdded = FACADE.addComment(c.getUserComment(), c.getTopicID(), c.getUserName(), c.getImageID());
+
+        String logUserText = "User: " + c.getUserName() + " Comment: " + c.getUserComment();
+        //Log request to create a comment 
+        LOGGER.log(Level.INFO, "Requested access to create a comment: {0}", logUserText);
+
+        fileHandler.close();
 
         return GSON.toJson(commentAdded);
     }
