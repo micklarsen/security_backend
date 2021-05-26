@@ -1,4 +1,0 @@
-maj 25, 2021 6:26:31 PM logging.LogTester main
-WARNING: Warning msg
-maj 25, 2021 6:26:31 PM logging.LogTester main
-SEVERE: Severe msg

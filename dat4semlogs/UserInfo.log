@@ -1,0 +1,24 @@
+maj 26, 2021 12:32:54 PM rest.PersonResource getFromAdmin
+CONFIG: Configuration done.
+maj 26, 2021 12:32:54 PM rest.PersonResource getFromAdmin
+WARNING: Requested access for admin user info: vill4ds
+maj 26, 2021 12:32:58 PM rest.PersonResource getFromUser
+CONFIG: Configuration done.
+maj 26, 2021 12:32:58 PM rest.PersonResource getFromUser
+INFO: Requested access for user info: someone
+maj 26, 2021 12:32:59 PM rest.PersonResource getFromAdmin
+CONFIG: Configuration done.
+maj 26, 2021 12:32:59 PM rest.PersonResource getFromAdmin
+WARNING: Requested access for admin user info: vill4ds
+maj 26, 2021 12:33:29 PM rest.PersonResource getFromAdmin
+CONFIG: Configuration done.
+maj 26, 2021 12:33:29 PM rest.PersonResource getFromAdmin
+WARNING: Requested access for admin user info: vill4ds
+maj 26, 2021 12:33:33 PM rest.PersonResource getFromUser
+CONFIG: Configuration done.
+maj 26, 2021 12:33:33 PM rest.PersonResource getFromUser
+INFO: Requested access for user info: someone
+maj 26, 2021 12:33:34 PM rest.PersonResource getFromAdmin
+CONFIG: Configuration done.
+maj 26, 2021 12:33:34 PM rest.PersonResource getFromAdmin
+WARNING: Requested access for admin user info: vill4ds
