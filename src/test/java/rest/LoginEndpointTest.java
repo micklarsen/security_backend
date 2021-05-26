@@ -76,9 +76,9 @@ public class LoginEndpointTest {
             em.createQuery("delete from Person").executeUpdate();
             em.createQuery("delete from Role").executeUpdate();
 
-            p1 = new Person("someone@hotmail.com", "someone", "secretpassword", "13467964", "John", "Williams");
-            p2 = new Person("villads@gmail.com", "vill4ds", "secretpassword", "65478931", "Villads", "Markmus");
-            p3 = new Person("someoneelse@hotmail.com", "someoneElse", "secretpassword", "32132112", "Willy", "Keeper");
+            p1 = new Person("someone@hotmail.com", "someone", "Secretpassword123!", "13467964", "John", "Williams");
+            p2 = new Person("villads@gmail.com", "vill4ds", "Secretpassword123!", "65478931", "Villads", "Markmus");
+            p3 = new Person("someoneelse@hotmail.com", "someoneElse", "Secretpassword123!", "32132112", "Willy", "Keeper");
 
             r1 = new Role("user");
             r2 = new Role("admin");
@@ -135,7 +135,7 @@ public class LoginEndpointTest {
 
     @Test
     public void testRestForAdmin() {
-        login("villads@gmail.com", "secretpassword");
+        login("villads@gmail.com", "Secretpassword123!");
         given()
                 .contentType("application/json")
                 .accept(ContentType.JSON)
@@ -148,7 +148,7 @@ public class LoginEndpointTest {
 
     @Test
     public void testRestForUser() {
-        login("someone@hotmail.com", "secretpassword");
+        login("someone@hotmail.com", "Secretpassword123!");
         given()
                 .contentType("application/json")
                 .header("x-access-token", securityToken)
@@ -160,7 +160,7 @@ public class LoginEndpointTest {
 
     @Test
     public void testAutorizedUserCannotAccesAdminPage() {
-        login("someone@hotmail.com", "secretpassword");
+        login("someone@hotmail.com", "Secretpassword123!");
         given()
                 .contentType("application/json")
                 .header("x-access-token", securityToken)
@@ -171,7 +171,7 @@ public class LoginEndpointTest {
 
     @Test
     public void testAutorizedAdminCannotAccesUserPage() {
-        login("villads@gmail.com", "secretpassword");
+        login("villads@gmail.com", "Secretpassword123!");
         given()
                 .contentType("application/json")
                 .header("x-access-token", securityToken)
@@ -183,7 +183,7 @@ public class LoginEndpointTest {
     @Test
     public void testRestForMultiRole1() {
         System.out.println(p2.getEmail());
-        login("villads@gmail.com", "secretpassword");
+        login("villads@gmail.com", "Secretpassword123!");
         given()
                 .contentType("application/json")
                 .accept(ContentType.JSON)

@@ -1,23 +1,31 @@
 package facades;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import dto.PersonDTO;
 import dto.PersonsDTO;
 import entities.Role;
 import utils.EMF_Creator;
 import entities.Person;
 import errorhandling.NotFoundException;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+
 import static org.hamcrest.MatcherAssert.assertThat;
+
 import org.hamcrest.Matchers;
+
 import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,9 +66,9 @@ public class PersonFacadeTest {
             em.createQuery("delete from Person").executeUpdate();
             em.createQuery("delete from Role").executeUpdate();
 
-            p1 = new Person("someone@hotmail.com", "someone", "secretpassword", "13467964", "John", "Williams");
-            p2 = new Person("villads@gmail.com", "vill4ds", "secretpassword", "65478931", "Villads", "Markmus");
-            p3 = new Person("someoneelse@hotmail.com", "someoneElse", "secretpassword", "32132112", "Willy", "Keeper");
+            p1 = new Person("someone@hotmail.com", "someone", "Secretpassword123!", "13467964", "John", "Williams");
+            p2 = new Person("villads@gmail.com", "vill4ds", "Secretpassword123!", "65478931", "Villads", "Markmus");
+            p3 = new Person("someoneelse@hotmail.com", "someoneElse", "Secretpassword123!", "32132112", "Willy", "Keeper");
 
             r1 = new Role("user");
             r2 = new Role("admin");
@@ -108,23 +116,14 @@ public class PersonFacadeTest {
     public void testMakePerson() throws Exception {
         EntityManager em = emf.createEntityManager();
 
-        String email = "ulla@hotmail.com";
-        String username = "ulla";
-        String phone = "123456";
-        String firstName = "Ulla";
-        String lastName = "Allu";
-        String password = "muffe";
+        String email = "kirsten@gmail.com";
 
-        Person p = new Person(email, username, password, phone, firstName, lastName);
+        String personString = "{\"email\":\"kirsten@gmail.com\",\"username\":\"heja_med-dig123\",\"password\":\"Hunter2!\",\"phone\":\"46791364\",\"firstName\":\"John\",\"lastName\":\"Langhals\"}";
+        Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
+        PersonDTO personDTO = GSON.fromJson(personString, PersonDTO.class);
 
-        System.out.println("Person: " + p);
-
-        PersonDTO pDTO = new PersonDTO(p);
-
-        System.out.println("PersonDTO" + pDTO);
-
-        facade.makePerson(pDTO);
+        facade.makePerson(personDTO);
 
         try {
             em.getTransaction().begin();
@@ -135,6 +134,7 @@ public class PersonFacadeTest {
         } finally {
             em.close();
         }
+
     }
 
     @Test
@@ -142,7 +142,6 @@ public class PersonFacadeTest {
 
         PersonsDTO personsDTO = facade.getAllPersons();
         List<PersonDTO> list = personsDTO.getAll();
-        System.out.println("Liste af personer: " + list);
         assertThat(list, everyItem(Matchers.hasProperty("email")));
         assertThat(list, Matchers.hasItems(Matchers.<PersonDTO>hasProperty("firstName", is("John")),
                 Matchers.<PersonDTO>hasProperty("firstName", is("Villads"))
