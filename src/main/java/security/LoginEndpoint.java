@@ -119,6 +119,8 @@ public class LoginEndpoint {
         
         LOGGER.finer("Finest example on LOGGER handler completed.");
         
+         fileHandler.close();
+        
       Person user = USER_FACADE.getVeryfiedUser(username, password);
       String token = createToken(username, user.getUsername(), user.getRolesAsStrings());
       JsonObject responseJson = new JsonObject();

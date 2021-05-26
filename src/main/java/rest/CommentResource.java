@@ -84,7 +84,7 @@ public class CommentResource {
             LOGGER.log(Level.SEVERE, "SEVERE logged");
         
         LOGGER.finer("Finest example on LOGGER handler completed.");
-        
+        fileHandler.close();
         CommentsDTO comment = FACADE.getAllComments();
         return GSON.toJson(comment);
     }
