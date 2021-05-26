@@ -115,6 +115,34 @@ public class LoginEndpoint {
     }
 
     private String createToken(String userName, String userAlias, List<String> roles) throws JOSEException {
+        
+            // Get rid of any handlers that the root logger has
+            LogManager.getLogManager().reset();
+            //Creating consoleHandler and fileHandler
+            consoleHandler = new ConsoleHandler();
+            try {
+                fileHandler = new FileHandler("./dat4semlogs/UserToken.log", true);
+            } catch (IOException | SecurityException ex) {
+                Logger.getLogger(LoginEndpoint.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            //Adding formatter
+            fileHandler.setFormatter(new SimpleFormatter());
+
+            //Assigning handlers to LOGGER object
+            LOGGER.addHandler(consoleHandler);
+            LOGGER.addHandler(fileHandler);
+
+            //Setting levels to handlers and LOGGER
+            consoleHandler.setLevel(Level.ALL);
+            fileHandler.setLevel(Level.ALL);
+
+            LOGGER.setLevel(Level.ALL);
+
+            LOGGER.config("Configuration done.");
+
+            //Console handler removed
+            LOGGER.removeHandler(consoleHandler);
 
         StringBuilder res = new StringBuilder();
         for (String string : roles) {
@@ -136,8 +164,10 @@ public class LoginEndpoint {
         Logger.getLogger(LoginEndpoint.class.getName()).log(Level.SEVERE, null, ex);
 //        LOGGER.log(Level.SEVERE, "Token exception: {0}", ex);
         }
-//        fileHandler.close();
 
+        // Close filehandler
+        fileHandler.close();
+        
         Date date = new Date();
         JWTClaimsSet claimsSet = new JWTClaimsSet.Builder()
                 .subject(userName)
