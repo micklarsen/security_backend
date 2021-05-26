@@ -47,46 +47,46 @@ public class CommentResource {
     }
 
     //To test if we have connection to our database
-    @GET
-    @Path("count")
-    @Produces(MediaType.APPLICATION_JSON)
-    public String commentCount() throws CommentException {
-        // Get rid of any handlers that the root logger has
-        LogManager.getLogManager().reset();
-        consoleHandler = new ConsoleHandler();
-        try {
-            fileHandler = new FileHandler("CountComments.log", true);
-        } catch (IOException | SecurityException ex) {
-            Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        //Adding formatter
-        fileHandler.setFormatter(new SimpleFormatter());
-
-        //Assigning handlers to LOGGER object
-        LOGGER.addHandler(consoleHandler);
-        LOGGER.addHandler(fileHandler);
-
-        //Setting levels to handlers and LOGGER
-        consoleHandler.setLevel(Level.ALL);
-        fileHandler.setLevel(Level.ALL);
-
-        LOGGER.setLevel(Level.ALL);
-
-        LOGGER.config("Configuration done.");
-
-        //Console handler removed
-        LOGGER.removeHandler(consoleHandler);
-
-        long count = FACADE.getCommentCount();
-
-        //Log request to all comments endpoint 
-        LOGGER.log(Level.INFO, "Requested total count of comments: {0}", count);
-
-        fileHandler.close();
-
-        return "{\"count\":" + count + "}";
-    }
+//    @GET
+//    @Path("count")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public String commentCount() throws CommentException {
+//        // Get rid of any handlers that the root logger has
+//        LogManager.getLogManager().reset();
+//        consoleHandler = new ConsoleHandler();
+//        try {
+//            fileHandler = new FileHandler("CountComments.log", true);
+//        } catch (IOException | SecurityException ex) {
+//            Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        //Adding formatter
+//        fileHandler.setFormatter(new SimpleFormatter());
+//
+//        //Assigning handlers to LOGGER object
+//        LOGGER.addHandler(consoleHandler);
+//        LOGGER.addHandler(fileHandler);
+//
+//        //Setting levels to handlers and LOGGER
+//        consoleHandler.setLevel(Level.ALL);
+//        fileHandler.setLevel(Level.ALL);
+//
+//        LOGGER.setLevel(Level.ALL);
+//
+//        LOGGER.config("Configuration done.");
+//
+//        //Console handler removed
+//        LOGGER.removeHandler(consoleHandler);
+//
+//        long count = FACADE.getCommentCount();
+//
+//        //Log request to all comments endpoint 
+//        LOGGER.log(Level.INFO, "Requested total count of comments: {0}", count);
+//
+//        fileHandler.close();
+//
+//        return "{\"count\":" + count + "}";
+//    }
 
     @Path("all")
     @GET

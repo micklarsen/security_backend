@@ -3,8 +3,10 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dto.PersonDTO;
+import entities.Person;
 import facades.PersonFacade;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -12,7 +14,9 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 import javax.annotation.security.RolesAllowed;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -48,23 +52,23 @@ public class PersonResource {
         return "{\"msg\":\"Hello anonymous\"}";
     }
 
-    //Just to verify if the database is setup
-    /*
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("count")
-    public String allUsers() {
-
-        EntityManager em = EMF.createEntityManager();
-        try {
-            TypedQuery<Person> query = em.createQuery ("select u from Person u", entities.Person.class);
-            List<Person> users = query.getResultList();
-            return "[" + users.size() + "]";
-        } finally {
-            em.close();
-        }
-    }
-     */
+    //To test if we have connection to our database 
+//    @GET
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Path("count")
+//    public String allUsers() {
+//
+//        EntityManager em = EMF.createEntityManager();
+//        try {
+//            TypedQuery<Person> query = em.createQuery ("select u from Person u", entities.Person.class);
+//            List<Person> users = query.getResultList();
+//            return "[" + users.size() + "]";
+//        } finally {
+//            em.close();
+//        }
+//    }
+     
+    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("user")
