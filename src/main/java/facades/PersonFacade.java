@@ -122,7 +122,11 @@ public class PersonFacade {
 
         try {
             newPerson = em.find(Person.class, email);
-            if (newPerson == null && email.length() > 0 && userPass.length() > 0) {
+
+            long newUsername = (long) em.createQuery("SELECT COUNT(u) FROM Person u WHERE u.username = :username")
+                    .setParameter("username", username).getSingleResult();
+
+            if (newPerson == null && email.length() > 0 && userPass.length() > 0 && newUsername == 0) {
                 newPerson = new Person(email, username, userPass, phone, fName, lName);
                 Role userRole = em.find(Role.class, "user");
                 newPerson.addRole(userRole);
@@ -134,12 +138,13 @@ public class PersonFacade {
                 if ((email.length() == 0 || userPass.length() == 0)) {
                     throw new AuthenticationException("Missing input");
                 }
-                if (newPerson.getEmail().equalsIgnoreCase(person.getEmail()) && !(newPerson.getUsername().equalsIgnoreCase(person.getUsername()))) {
-                    throw new AuthenticationException("User email exist");
-                }
-                if (!(newPerson.getEmail().equalsIgnoreCase(person.getEmail())) && newPerson.getUsername().equalsIgnoreCase(person.getUsername())) {
+                if (newUsername > 0 && newPerson == null) {
                     throw new AuthenticationException("Username exist");
                 }
+                if (newPerson.getEmail().equalsIgnoreCase(person.getEmail()) && !(newUsername > 0)) {
+                    throw new AuthenticationException("User email exist");
+                }
+
                 if (newPerson.getUsername().equalsIgnoreCase(person.getUsername()) && (newPerson.getEmail().equalsIgnoreCase(person.getEmail()))) {
                     throw new AuthenticationException("Username and email exist");
                 }
