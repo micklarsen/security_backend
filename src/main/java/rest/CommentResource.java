@@ -95,7 +95,7 @@ public class CommentResource {
         LogManager.getLogManager().reset();
         consoleHandler = new ConsoleHandler();
         try {
-            fileHandler = new FileHandler("AllComments.log", true);
+            fileHandler = new FileHandler("./dat4semlogs/AllComments.log", true);
         } catch (IOException | SecurityException ex) {
             Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -135,7 +135,7 @@ public class CommentResource {
         LogManager.getLogManager().reset();
         consoleHandler = new ConsoleHandler();
         try {
-            fileHandler = new FileHandler("UserCommentsWithID.log", true);
+            fileHandler = new FileHandler("./dat4semlogs/UserCommentsWithID.log", true);
         } catch (IOException | SecurityException ex) {
             Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
 //              LOGGER.log(Level.SEVERE, "Token exception: {0}", ex);
@@ -177,7 +177,7 @@ public class CommentResource {
         consoleHandler = new ConsoleHandler();
 
         try {
-            fileHandler = new FileHandler("DeleteComment.log", true);
+            fileHandler = new FileHandler("./dat4semlogs/DeleteComment.log", true);
         } catch (IOException | SecurityException ex) {
             Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -218,7 +218,7 @@ public class CommentResource {
         consoleHandler = new ConsoleHandler();
 
         try {
-            fileHandler = new FileHandler("POSTComment.log", true);
+            fileHandler = new FileHandler("./dat4semlogs/POSTComment.log", true);
         } catch (IOException | SecurityException ex) {
             Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
         }
