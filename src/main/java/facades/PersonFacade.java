@@ -6,10 +6,8 @@ import entities.Person;
 import entities.Role;
 import errorhandling.NotFoundException;
 
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.TypedQuery;
 
 import security.errorhandling.AuthenticationException;
 
@@ -17,6 +15,21 @@ public class PersonFacade {
 
     private static EntityManagerFactory emf;
     private static PersonFacade instance;
+
+    public boolean regexEmailCheck(String matchText){
+        String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+        return matchText.matches(regex);
+    }
+
+    public boolean regexCharacterCheck(String matchText){
+        String regex = "^[a-zA-Z0-9_-]*$";
+        return matchText.matches(regex);
+    }
+
+    public boolean regexPasswordCheck(String matchText){
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$";
+        return matchText.matches(regex);
+    }
 
     private PersonFacade() {
     }
@@ -91,7 +104,6 @@ public class PersonFacade {
         return new PersonDTO(user);
     }
 
-
     public PersonsDTO getAllPersons() throws NotFoundException {
 
         EntityManager em = emf.createEntityManager();
@@ -116,6 +128,18 @@ public class PersonFacade {
         String fName = person.getFirstName();
         String lName = person.getLastName();
 
+        if (!regexEmailCheck(email)){
+            throw new AuthenticationException("Bad email format");
+        }
+
+        if(!regexCharacterCheck(username) || !(username.length() >= 2)){
+            throw new AuthenticationException("Bad username - No special characters allowed and must be 2 characters or more");
+        }
+
+        if(!regexPasswordCheck(userPass)){
+            throw  new AuthenticationException("Bad password - Minimum six characters, at least one uppercase letter, one lowercase letter, one number and one special character:");
+        }
+
         Person newPerson;
 
         EntityManager em = emf.createEntityManager();
@@ -126,7 +150,7 @@ public class PersonFacade {
             long newUsername = (long) em.createQuery("SELECT COUNT(u) FROM Person u WHERE u.username = :username")
                     .setParameter("username", username).getSingleResult();
 
-            if (newPerson == null && email.length() > 0 && userPass.length() > 0 && newUsername == 0) {
+            if (newPerson == null && email.length() > 0 && userPass.length() > 0 && newUsername != 1) {
                 newPerson = new Person(email, username, userPass, phone, fName, lName);
                 Role userRole = em.find(Role.class, "user");
                 newPerson.addRole(userRole);
