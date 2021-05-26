@@ -67,8 +67,6 @@ public class PersonResource {
 //            em.close();
 //        }
 //    }
-     
-    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("user")
@@ -102,6 +100,11 @@ public class PersonResource {
         //Console handler removed
         LOGGER.removeHandler(consoleHandler);
 
+        /**
+         * Returns a <code>java.security.Principal</code> object containing the
+         * name of the current authenticated user. If the user has not been
+         * authenticated, the method returns null.
+         */
         String thisuser = securityContext.getUserPrincipal().getName();
 
         //Log request to access user info
@@ -145,6 +148,11 @@ public class PersonResource {
         //Console handler removed
         LOGGER.removeHandler(consoleHandler);
 
+        /**
+         * Returns a <code>java.security.Principal</code> object containing the
+         * name of the current authenticated user. If the user has not been
+         * authenticated, the method returns null.
+         */
         String thisuser = securityContext.getUserPrincipal().getName();
 
         //Log request to access admin info
