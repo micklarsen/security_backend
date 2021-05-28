@@ -138,7 +138,7 @@ public class CommentResource {
             fileHandler = new FileHandler("./dat4semlogs/UserCommentsWithID.log", true);
         } catch (IOException | SecurityException ex) {
             Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
-//              LOGGER.log(Level.SEVERE, "Token exception: {0}", ex);
+              LOGGER.log(Level.SEVERE, "Token exception: {0}", ex);
         }
 
         //Adding formatter
