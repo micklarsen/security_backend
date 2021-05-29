@@ -23,7 +23,7 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
       return;
     }
   }
-    
+
   // A preflight request is an OPTIONS request with an Origin header.
   private static boolean isPreflightRequest(ContainerRequestContext request) {
       return request.getHeaderString("Origin") != null  && request.getMethod().equalsIgnoreCase("OPTIONS");
@@ -44,7 +44,7 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
         response.getHeaders().add("Access-Control-Allow-Methods","GET, POST, PUT, DELETE, OPTIONS, HEAD");
           response.getHeaders().add("Access-Control-Allow-Headers",
 
-          // Whatever other non-standard/safe headers (see list above) 
+          // Whatever other non-standard/safe headers (see list above)
           // you want the client to be able to send to the server,
           // put it in this list. And remove the ones you don't want.
           "Origin, Accept, Content-Type, Authorization,x-access-token");
@@ -52,7 +52,7 @@ public class CorsFilter implements ContainerRequestFilter, ContainerResponseFilt
 
     /* Cross origin requests can be either simple requests or preflight request. We need to add this
      header to both types of requests. Only preflight requests need the previously added headers. */
-     response.getHeaders().add("Access-Control-Allow-Origin", "https://dat4semsecurity.surge.sh");
-     //response.getHeaders().add("Access-Control-Allow-Origin", "http://localhost:3000");
+     //response.getHeaders().add("Access-Control-Allow-Origin", "https://dat4semsecurity.surge.sh");
+     response.getHeaders().add("Access-Control-Allow-Origin", "http://localhost:3000"); // Use this for local development only
   }
 }

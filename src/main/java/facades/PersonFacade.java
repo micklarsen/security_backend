@@ -16,16 +16,36 @@ public class PersonFacade {
     private static EntityManagerFactory emf;
     private static PersonFacade instance;
 
+    /**
+     * Sanitizer helper for email using regex to match tainted source
+     * Regex check for characters before and after '@' and a '.' and
+     * minimum 2 and maximum 4 character af the '.'
+     * @param matchText
+     * @return
+     */
     public boolean regexEmailCheck(String matchText){
         String regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
         return matchText.matches(regex);
     }
 
+    /**
+     * Sanitizer helper for character check using regex to match tainted source
+     * Regex check for only letters, digits, _ and -
+     * @param matchText
+     * @return
+     */
     public boolean regexCharacterCheck(String matchText){
         String regex = "^[a-zA-Z0-9_-]*$";
         return matchText.matches(regex);
     }
 
+    /**
+     * Sanitizer helper for password check using regex to match tainted source
+     * Regex check for minimum one uppercase, one lowercase, one digit, one
+     * special character and minimum 6 character
+     * @param matchText
+     * @return
+     */
     public boolean regexPasswordCheck(String matchText){
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$";
         return matchText.matches(regex);
@@ -87,23 +107,6 @@ public class PersonFacade {
         return new PersonDTO(user);
     }
 
-    public PersonDTO getPersonByUsername(String username) throws NotFoundException {
-        EntityManager em = emf.createEntityManager();
-
-        Person user;
-        PersonDTO pDTO;
-
-        try {
-            user = em.find(Person.class, username);
-            if (user == null) {
-                throw new NotFoundException("Invalid username");
-            }
-        } finally {
-            em.close();
-        }
-        return new PersonDTO(user);
-    }
-
     public PersonsDTO getAllPersons() throws NotFoundException {
 
         EntityManager em = emf.createEntityManager();
@@ -121,6 +124,10 @@ public class PersonFacade {
 
     public PersonDTO makePerson(PersonDTO person) throws AuthenticationException {
 
+        /**
+         * Taint source:
+         * Here we have the tainted source from our rest endpoint in PersonResource.java
+         */
         String email = person.getEmail();
         String username = person.getUsername();
         String userPass = person.getPassword();
@@ -128,6 +135,11 @@ public class PersonFacade {
         String fName = person.getFirstName();
         String lName = person.getLastName();
 
+        /**
+         * Sanitizers:
+         * Here we sanitize email, username and password from the tainted source before we persist to db
+         * We use helper methods with regex to check for bad input
+         */
         if (!regexEmailCheck(email)){
             throw new AuthenticationException("Bad email format");
         }
@@ -155,10 +167,21 @@ public class PersonFacade {
                 Role userRole = em.find(Role.class, "user");
                 newPerson.addRole(userRole);
 
+                /**
+                 * Sink:
+                 * Here vi persist the sanitized source
+                 */
                 em.getTransaction().begin();
                 em.persist(newPerson);
                 em.getTransaction().commit();
             } else {
+
+                /**
+                 * Validation:
+                 * Her we validate user input server side
+                 * First check if there is a email or password
+                 * Then if username exist and if email exist or both exist
+                 */
                 if ((email.length() == 0 || userPass.length() == 0)) {
                     throw new AuthenticationException("Missing input");
                 }

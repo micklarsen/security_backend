@@ -37,8 +37,6 @@ public class Comment implements Serializable {
     @Column(name = "image_file")
     private String imageBase64;
 
-    //UploadServlet uploadServlet = new UploadServlet();
-
     public Comment(String comment, int topicID, String imageBase64) {
         this.comment = comment;
         this.created = new Date();
@@ -47,37 +45,15 @@ public class Comment implements Serializable {
         this.imageBase64 = imageBase64;
     }
 
-
-//    public String makeFileName(String filename) {
-//        try {
-//            return uploadServlet.makeMD5(imageFile) + uploadServlet.getFileExtension(imageFile);
-//        } catch (NoSuchAlgorithmException e) {
-//            e.printStackTrace();
-//        }
-//        return "";
-//    }
-
     public Comment() {
-    }
-
-    public void setTopicID(int topicID) {
-        this.topicID = topicID;
     }
 
     public String getImageBase64() {
         return imageBase64;
     }
 
-    public void setImageBase64(String imageID) {
-        this.imageBase64 = imageID;
-    }
-
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getComment() {
@@ -100,24 +76,8 @@ public class Comment implements Serializable {
         return created;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
-    public Date getLastEdited() {
-        return lastEdited;
-    }
-
-    public void setLastEdited(Date lastEdited) {
-        this.lastEdited = lastEdited;
-    }
-
     public int getTopicID() {
         return topicID;
-    }
-
-    public void setRocketID(int topicID) {
-        this.topicID = topicID;
     }
 
     @Override

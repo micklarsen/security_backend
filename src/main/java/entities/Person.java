@@ -77,16 +77,8 @@ public class Person implements Serializable {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getUserPass() {
         return this.userPass;
-    }
-
-    public void setUserPass(String userPass) {
-        this.userPass = userPass;
     }
 
     public List<String> getRolesAsStrings() {
@@ -98,14 +90,6 @@ public class Person implements Serializable {
             rolesAsStrings.add(role.getRoleName());
         });
         return rolesAsStrings;
-    }
-
-    public List<Comment> getCommentList() {
-        return commentList;
-    }
-
-    public void setCommentList(List<Comment> commentList) {
-        this.commentList = commentList;
     }
 
     public void addComment(Comment userComment) {
@@ -121,14 +105,6 @@ public class Person implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public List<Role> getRoleList() {
-        return roleList;
-    }
-
-    public void setRoleList(List<Role> roleList) {
-        this.roleList = roleList;
     }
 
     public void addRole(Role userRole) {

@@ -40,19 +40,6 @@ public class CommentFacade {
         return emf.createEntityManager();
     }
 
-    public long getCommentCount() throws CommentException {
-        EntityManager em = emf.createEntityManager();
-
-        try {
-            long commentCount = (long) em.createQuery("SELECT COUNT(c) FROM Comment c").getSingleResult();
-            return commentCount;
-        } catch (Exception e) {
-            throw new CommentException("No connection to the database");
-        } finally {
-            em.close();
-        }
-    }
-
     public CommentsDTO getAllComments() throws CommentException {
 
         EntityManager em = getEntityManager();

@@ -13,8 +13,4 @@ public class ExceptionDTO {
         return code;
     }
 
-    public String getMessage() {
-        return message;
-    }
-
 }
