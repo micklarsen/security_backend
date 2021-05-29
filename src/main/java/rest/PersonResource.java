@@ -79,7 +79,7 @@ public class PersonResource {
         try {
             fileHandler = new FileHandler("./dat4semlogs/UserInfo.log", true);
         } catch (IOException | SecurityException ex) {
-            Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
+   //         Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //Adding formatter
@@ -127,7 +127,7 @@ public class PersonResource {
         try {
             fileHandler = new FileHandler("dat4semlogs/UserInfo.log", true);
         } catch (IOException | SecurityException ex) {
-            Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
+    //        Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //Adding formatter
@@ -190,7 +190,7 @@ public class PersonResource {
         try {
             fileHandler = new FileHandler("dat4semlogs/UserInfo.log", true);
         } catch (IOException | SecurityException ex) {
-            Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
+    //        Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //Adding formatter

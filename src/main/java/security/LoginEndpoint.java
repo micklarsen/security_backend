@@ -72,7 +72,7 @@ public class LoginEndpoint {
             try {
                 fileHandler = new FileHandler("./dat4semlogs/Login.log", true);
             } catch (IOException | SecurityException ex) {
-                Logger.getLogger(LoginEndpoint.class.getName()).log(Level.SEVERE, null, ex);
+    //            Logger.getLogger(LoginEndpoint.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             //Adding formatter
@@ -123,7 +123,7 @@ public class LoginEndpoint {
             try {
                 fileHandler = new FileHandler("./dat4semlogs/UserToken.log", true);
             } catch (IOException | SecurityException ex) {
-                Logger.getLogger(LoginEndpoint.class.getName()).log(Level.SEVERE, null, ex);
+      //          Logger.getLogger(LoginEndpoint.class.getName()).log(Level.SEVERE, null, ex);
             }
 
             //Adding formatter
@@ -161,7 +161,7 @@ public class LoginEndpoint {
         try {
             signer = new MACSigner(SharedSecret.getSharedKey());
         } catch (KeyLengthException ex) {
-        Logger.getLogger(LoginEndpoint.class.getName()).log(Level.SEVERE, null, ex);
+     //   Logger.getLogger(LoginEndpoint.class.getName()).log(Level.SEVERE, null, ex);
         LOGGER.log(Level.SEVERE, "Token exception: {0}", ex);
         }
 
