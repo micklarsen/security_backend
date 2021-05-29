@@ -25,7 +25,7 @@ public class NotFoundExceptionMapper implements ExceptionMapper<NotFoundExceptio
         Response.StatusType type = getStatusType(ex);
         ExceptionDTO err;
         if (ex instanceof NotFoundException) {
-            err = new ExceptionDTO(type.getStatusCode(), ((NotFoundException) ex).getMessage());
+            err = new ExceptionDTO(type.getStatusCode(), ex.getMessage());
         } else {
 
             err = new ExceptionDTO(type.getStatusCode(), type.getReasonPhrase());

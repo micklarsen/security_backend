@@ -52,21 +52,6 @@ public class PersonResource {
         return "{\"msg\":\"Hello anonymous\"}";
     }
 
-    //To test if we have connection to our database 
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    @Path("count")
-//    public String allUsers() {
-//
-//        EntityManager em = EMF.createEntityManager();
-//        try {
-//            TypedQuery<Person> query = em.createQuery ("select u from Person u", entities.Person.class);
-//            List<Person> users = query.getResultList();
-//            return "[" + users.size() + "]";
-//        } finally {
-//            em.close();
-//        }
-//    }
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("user")
@@ -163,22 +148,6 @@ public class PersonResource {
         return "{\"msg\": \"Hello to (admin) User: " + thisuser + "\"}";
     }
 
-    /*
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("person/{email}")
-    public String getPersonByEmail(@PathParam("email") String email) throws NotFoundException {
-        return GSON.toJson(FACADE.getPersonByEmail(email));
-    }
-
-    @GET
-    @Produces({MediaType.APPLICATION_JSON})
-    @Path("person/all")
-    public String getAllPersons() throws NotFoundException {
-        PersonsDTO psDTO = FACADE.getAllPersons();
-        return GSON.toJson(psDTO);
-    }
-     */
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
@@ -222,23 +191,4 @@ public class PersonResource {
         return newPerson;
     }
 
-    /*
-    @PUT
-    @Path("person")
-    @Produces({MediaType.APPLICATION_JSON})
-    @Consumes({MediaType.APPLICATION_JSON})
-    public Response updatePerson(String person) throws NotFoundException{
-        PersonDTO personDTO = GSON.fromJson(person, PersonDTO.class);
-        FACADE.updatePerson(personDTO);
-        return Response.status(Response.Status.OK).entity("Person updated OK").build();
-    }    
-    
-    @DELETE
-    @Path("delete/{email}")
-    @Produces({MediaType.APPLICATION_JSON})
-    public String deletePerson(@PathParam("email") String email) throws NotFoundException {
-        PersonDTO personDelete = FACADE.deletePerson(email);
-        return GSON.toJson(personDelete);
-    }
-     */
 }

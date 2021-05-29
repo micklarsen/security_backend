@@ -86,7 +86,7 @@ public class JWTAuthenticationFilter implements ContainerRequestFilter {
      String[] rolesArray = roles.split(",");
      
      return new UserPrincipal(username, userAlias, rolesArray);
-//     return new UserPrincipal(username, roles);
+
    } else {
      throw new JOSEException("User could not be extracted from token");
    }

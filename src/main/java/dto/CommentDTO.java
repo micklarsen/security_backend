@@ -14,7 +14,6 @@ public class CommentDTO {
     private String imageID;
 
     private String userName;
-    private String userEmail;
 
     public CommentDTO() {
     }
@@ -32,16 +31,8 @@ public class CommentDTO {
         return imageID;
     }
 
-    public void setImageID(String imageID) {
-        this.imageID = imageID;
-    }
-
     public String getUserComment() {
         return userComment;
-    }
-
-    public void setUserComment(String userComment) {
-        this.userComment = userComment;
     }
 
     public Comment getComment() {
@@ -56,24 +47,8 @@ public class CommentDTO {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Date getCreated() {
-        return created;
-    }
-
-    public void setCreated(Date created) {
-        this.created = created;
-    }
-
     public int getTopicID() {
         return topicID;
-    }
-
-    public void setTopicID(int topicID) {
-        this.topicID = topicID;
     }
 
     public String getUserName() {
@@ -83,10 +58,6 @@ public class CommentDTO {
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
-    public String getUserEmail() { return userEmail; }
-
-    public void setUserEmail(String userEmail) { this.userEmail = userEmail; }
 
     @Override
     public int hashCode() {
@@ -123,7 +94,7 @@ public class CommentDTO {
 
     @Override
     public String toString() {
-        return "CommentDTO{" + "userComment=" + userComment + ", comment=" + comment + ", created=" + created + ", id=" + id + ", topicID=" + topicID + ", userName=" + userName + ", userEmail=" + userEmail + '}';
+        return "CommentDTO{" + "userComment=" + userComment + ", comment=" + comment + ", created=" + created + ", id=" + id + ", topicID=" + topicID + ", userName=" + userName +'}';
     }
 
 

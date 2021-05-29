@@ -6,7 +6,4 @@ public class CommentException extends Exception {
         super(message);
     }
 
-    public CommentException() {
-        super("No Connection to the server");
-    }
 }

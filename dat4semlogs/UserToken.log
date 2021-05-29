@@ -1,0 +1,20 @@
+maj 28, 2021 9:57:13 PM security.LoginEndpoint createToken
+CONFIG: Configuration done.
+maj 28, 2021 9:57:13 PM security.LoginEndpoint createToken
+INFO: Token info: User: villads@gmail.com - role: admin - issuer: DAT4SEM_Security
+maj 28, 2021 9:57:17 PM security.LoginEndpoint createToken
+CONFIG: Configuration done.
+maj 28, 2021 9:57:17 PM security.LoginEndpoint createToken
+INFO: Token info: User: villads@gmail.com - role: admin - issuer: DAT4SEM_Security
+maj 28, 2021 9:57:20 PM security.LoginEndpoint createToken
+CONFIG: Configuration done.
+maj 28, 2021 9:57:20 PM security.LoginEndpoint createToken
+INFO: Token info: User: someone@hotmail.com - role: user - issuer: DAT4SEM_Security
+maj 28, 2021 9:57:24 PM security.LoginEndpoint createToken
+CONFIG: Configuration done.
+maj 28, 2021 9:57:24 PM security.LoginEndpoint createToken
+INFO: Token info: User: someone@hotmail.com - role: user - issuer: DAT4SEM_Security
+maj 28, 2021 9:57:26 PM security.LoginEndpoint createToken
+CONFIG: Configuration done.
+maj 28, 2021 9:57:26 PM security.LoginEndpoint createToken
+INFO: Token info: User: villads@gmail.com - role: admin - issuer: DAT4SEM_Security
