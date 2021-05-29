@@ -97,7 +97,7 @@ public class CommentResource {
         try {
             fileHandler = new FileHandler("AllComments.log", true);
         } catch (IOException | SecurityException ex) {
-      //      Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //Adding formatter
@@ -179,7 +179,7 @@ public class CommentResource {
         try {
             fileHandler = new FileHandler("DeleteComment.log", true);
         } catch (IOException | SecurityException ex) {
-      //      Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //Adding formatter
@@ -220,7 +220,7 @@ public class CommentResource {
         try {
             fileHandler = new FileHandler("POSTComment.log", true);
         } catch (IOException | SecurityException ex) {
-      //      Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //Adding formatter
