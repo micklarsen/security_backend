@@ -77,7 +77,7 @@ public class PersonResource {
         consoleHandler = new ConsoleHandler();
 
         try {
-            fileHandler = new FileHandler("./dat4semlogs/UserInfo.log", true);
+            fileHandler = new FileHandler("UserInfo.log", true);
         } catch (IOException | SecurityException ex) {
    //         Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -125,7 +125,7 @@ public class PersonResource {
         consoleHandler = new ConsoleHandler();
 
         try {
-            fileHandler = new FileHandler("dat4semlogs/UserInfo.log", true);
+            fileHandler = new FileHandler("AdminInfo.log", true);
         } catch (IOException | SecurityException ex) {
     //        Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -188,7 +188,7 @@ public class PersonResource {
         consoleHandler = new ConsoleHandler();
 
         try {
-            fileHandler = new FileHandler("dat4semlogs/UserInfo.log", true);
+            fileHandler = new FileHandler("addUserInfo.log", true);
         } catch (IOException | SecurityException ex) {
     //        Logger.getLogger(CommentResource.class.getName()).log(Level.SEVERE, null, ex);
         }
